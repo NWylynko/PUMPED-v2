@@ -604,15 +604,6 @@
     "@graphql-tools/utils" "^8.8.0"
     tslib "~2.4.0"
 
-"@graphql-codegen/named-operations-object@^2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@graphql-codegen/named-operations-object/-/named-operations-object-2.3.0.tgz#8edfa657ccf11c54a4c4dcfe0abe957c31f140a1"
-  integrity sha512-p9TPhaVWco6YhEO8axxJa+9qaDZtCryVwTS8VcQbV3EFVGy4nLifAhoBWd7zySs+UkeG8gJCUwUpJbKms5elhA==
-  dependencies:
-    "@graphql-codegen/plugin-helpers" "^2.5.0"
-    change-case-all "1.0.14"
-    tslib "~2.4.0"
-
 "@graphql-codegen/near-operation-file-preset@^2.3.1":
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/near-operation-file-preset/-/near-operation-file-preset-2.3.1.tgz#fe01cb460b763e92834a92cea1bfeece667232ea"
@@ -625,7 +616,7 @@
     parse-filepath "^1.0.2"
     tslib "~2.4.0"
 
-"@graphql-codegen/plugin-helpers@^2.3.1", "@graphql-codegen/plugin-helpers@^2.3.2", "@graphql-codegen/plugin-helpers@^2.5.0":
+"@graphql-codegen/plugin-helpers@^2.5.0":
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/plugin-helpers/-/plugin-helpers-2.5.0.tgz#83601ed1a362c05c64c4fc9c538a0f801bc6318f"
   integrity sha512-0jM5/14EdM4yow5v8OGOnUmRqfA1gaWkh+J5berqQUpcFYfSQXD6+Idnkiju/jjIypEN7UvbPkC7BgryWVxexA==
@@ -637,24 +628,13 @@
     lodash "~4.17.0"
     tslib "~2.4.0"
 
-"@graphql-codegen/schema-ast@^2.4.1", "@graphql-codegen/schema-ast@^2.5.0":
+"@graphql-codegen/schema-ast@^2.5.0":
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/schema-ast/-/schema-ast-2.5.0.tgz#1b33a17924f0dd4c78d4f2c9dfce215d0bdd29ae"
   integrity sha512-nlF4Yc7h90nmogG2E11TeFJ3/hCkb4SDMSdbJX68b1mhvVEji/kq3zWYKAQ+lAzjZ7HF94Eylm3MrZAjjpCKIA==
   dependencies:
     "@graphql-codegen/plugin-helpers" "^2.5.0"
     "@graphql-tools/utils" "^8.8.0"
-    tslib "~2.4.0"
-
-"@graphql-codegen/typescript-apollo-client-helpers@^2.2.1":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@graphql-codegen/typescript-apollo-client-helpers/-/typescript-apollo-client-helpers-2.2.1.tgz#538fa201dd1b8235171e944f5e2c225479f68bdc"
-  integrity sha512-g1f2dBexQARGuP3nT2NWCHStTC6mnmAgAtTtPv43KcM71pVgFAAEXUvW9Uf3O7T0xoGG0PlpTQgc9I181AET3w==
-  dependencies:
-    "@graphql-codegen/plugin-helpers" "^2.5.0"
-    "@graphql-codegen/visitor-plugin-common" "2.11.1"
-    auto-bind "~4.0.0"
-    change-case-all "1.0.14"
     tslib "~2.4.0"
 
 "@graphql-codegen/typescript-generic-sdk@^2.4.1":
@@ -678,17 +658,6 @@
     auto-bind "~4.0.0"
     tslib "~2.4.0"
 
-"@graphql-codegen/typescript-react-apollo@^3.3.1":
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/@graphql-codegen/typescript-react-apollo/-/typescript-react-apollo-3.3.1.tgz#fb92c1ffd4ca14c2d72fd4eb625b4a612c3a3116"
-  integrity sha512-YZaQyhPfD3yDKdUU9IBzALLxLeUC9GkTxxkR6OmaGv3acthMLgyt+TwcYAbIrb+wIjB2INk8waP1V4vklHZ2qA==
-  dependencies:
-    "@graphql-codegen/plugin-helpers" "^2.5.0"
-    "@graphql-codegen/visitor-plugin-common" "2.11.1"
-    auto-bind "~4.0.0"
-    change-case-all "1.0.14"
-    tslib "~2.4.0"
-
 "@graphql-codegen/typescript@^2.7.1":
   version "2.7.1"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/typescript/-/typescript-2.7.1.tgz#e237dd8829842282245b79ce7ea024aaa3c39afb"
@@ -700,7 +669,7 @@
     auto-bind "~4.0.0"
     tslib "~2.4.0"
 
-"@graphql-codegen/visitor-plugin-common@2.11.1", "@graphql-codegen/visitor-plugin-common@^2.5.2", "@graphql-codegen/visitor-plugin-common@^2.9.1":
+"@graphql-codegen/visitor-plugin-common@2.11.1":
   version "2.11.1"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/visitor-plugin-common/-/visitor-plugin-common-2.11.1.tgz#2653e25a8888767a6422a204441083299c3a83a4"
   integrity sha512-AlrtGWKn2o89SPna75ATEHYAu95MUMucgBqLgcRvK9n/PHhVAbkDrNCH5pL03fE0HLOup3GpjX8DcnFBMU46IA==
@@ -914,7 +883,7 @@
     value-or-promise "^1.0.11"
     ws "^8.3.0"
 
-"@graphql-tools/utils@8.8.0", "@graphql-tools/utils@^8.6.1", "@graphql-tools/utils@^8.6.5", "@graphql-tools/utils@^8.8.0":
+"@graphql-tools/utils@8.8.0", "@graphql-tools/utils@^8.6.5", "@graphql-tools/utils@^8.8.0":
   version "8.8.0"
   resolved "https://registry.yarnpkg.com/@graphql-tools/utils/-/utils-8.8.0.tgz#8332ff80a1da9204ccf514750dd6f5c5cccf17dc"
   integrity sha512-KJrtx05uSM/cPYFdTnGAS1doL5bftJLAiFCDMZ8Vkifztz3BFn3gpFiy/o4wDtM8s39G46mxmt2Km/RmeltfGw==
@@ -2695,26 +2664,6 @@ globby@^11.0.3, globby@^11.1.0:
     merge2 "^1.4.1"
     slash "^3.0.0"
 
-graphql-codegen-apollo-next-ssr@^1.7.4:
-  version "1.7.4"
-  resolved "https://registry.yarnpkg.com/graphql-codegen-apollo-next-ssr/-/graphql-codegen-apollo-next-ssr-1.7.4.tgz#a270aa2a85ace2c1343b199e25199843923f825e"
-  integrity sha512-s/VgiPpyU6tLCIpZjkfSu0hzEJC7I8JX9IXA2aAN4GDk/3B77L9ZgHWhi07DAhP9KZk+RTGuUwFmVHsL0T+TNg==
-  dependencies:
-    "@graphql-codegen/plugin-helpers" "^2.3.1"
-    "@graphql-codegen/visitor-plugin-common" "^2.9.1"
-    auto-bind "~4.0.0"
-
-graphql-codegen-typescript-validation-schema@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/graphql-codegen-typescript-validation-schema/-/graphql-codegen-typescript-validation-schema-0.5.0.tgz#b890b31a01e05e9878a0fcd0fd19926bf914198b"
-  integrity sha512-jqRpeulMkEj3e14pmDAa4toPiau5S6zImws1wMMdq0zSD7P/WiCBoZIU6XxLLvXqlqyLC21CYK7S8IIXTqLReA==
-  dependencies:
-    "@graphql-codegen/plugin-helpers" "^2.3.2"
-    "@graphql-codegen/schema-ast" "^2.4.1"
-    "@graphql-codegen/visitor-plugin-common" "^2.5.2"
-    "@graphql-tools/utils" "^8.6.1"
-    graphql "^16.2.0"
-
 graphql-config@^4.3.1:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/graphql-config/-/graphql-config-4.3.1.tgz#636b539b1acc06fb48012d0e0f228014ccb0325f"
@@ -2753,7 +2702,7 @@ graphql-ws@^5.4.1:
   resolved "https://registry.yarnpkg.com/graphql-ws/-/graphql-ws-5.9.1.tgz#9c0fa48ceb695d61d574ed3ab21b426729e87f2d"
   integrity sha512-mL/SWGBwIT9Meq0NlfS55yXXTOeWPMbK7bZBEZhFu46bcGk1coTx2Sdtzxdk+9yHWngD+Fk1PZDWaAutQa9tpw==
 
-graphql@^16.2.0, graphql@^16.5.0:
+graphql@^16.5.0:
   version "16.5.0"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.5.0.tgz#41b5c1182eaac7f3d47164fb247f61e4dfb69c85"
   integrity sha512-qbHgh8Ix+j/qY+a/ZcJnFQ+j8ezakqPiHwPiZhV/3PgGlgf96QMBB5/f2rkiC9sgLoy/xvT6TSiaf2nTHJh5iA==

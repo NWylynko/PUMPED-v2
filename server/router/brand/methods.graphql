@@ -1,19 +1,38 @@
-# import * from "http://localhost:8080/graphql"
+
+query getBrand($brandId: ID!) {
+	getBrand(id: $brandId) {
+		id
+		name
+		website
+    icon {
+      id
+      name
+    }
+	}
+}
 
 mutation createBrand($brand: AddBrandInput!) {
   addBrand(input: [$brand]) {
     brand {
       id
-      name
-      website
     }
   }
 }
 
-query getBrands {
-	queryBrand {
-		id
-		name
-		website
+mutation updateBrand($brandId: ID!, $change: BrandPatch!) {
+	updateBrand(input: { filter: { id: [$brandId] }, set: $change }) {
+		brand {
+			id
+			name
+			website
+		}
+	}
+}
+
+mutation removeBrand($brandId: ID!) {
+	deleteBrand(filter: { id: [$brandId] }) {
+		brand {
+			id
+		}
 	}
 }

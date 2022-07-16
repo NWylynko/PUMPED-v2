@@ -1,6 +1,6 @@
 import { t } from './trpc';
 
-import { brandRouter } from "./brand/router";
+import { brandRouter } from "./brand";
 
 export const appRouter = t.router({
   brand: brandRouter

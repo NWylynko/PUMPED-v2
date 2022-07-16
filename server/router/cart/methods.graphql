@@ -1,0 +1,11 @@
+query getCart($customerId: ID!) {
+	queryOrder(filter: {id: [$customerId]}) {
+		id
+		items {
+			shoe {
+				id
+				name
+			}
+		}
+	}
+}
