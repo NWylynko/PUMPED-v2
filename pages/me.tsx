@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
-import StoreContext from "@/lib/store";
+import StoreContext from "../lib/store";
 import styled from "styled-components";
-import { addCustomer } from "@/lib/api";
+import { addCustomer } from "../lib/api";
 import { useRouter } from "next/router";
 
 interface Props { }

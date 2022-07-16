@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import StoreContext from "@/lib/store";
+import StoreContext from "../lib/store";
 import styled from "styled-components";
 import {
   checkoutCart,
@@ -7,11 +7,11 @@ import {
   getCart,
   // getShoe,
   updateCart,
-} from "@/lib/api";
-import type { OrderItem } from "@/PUMPED-api/api/order/types";
-import { Loading } from "@/components/loading";
+} from "../lib/api";
+import type { OrderItem } from "../PUMPED-api/api/order/types";
+import { Loading } from "../components/loading";
 import Link from "next/link";
-import { ShoeWithDetails } from "@/PUMPED-api/api/shoe/types";
+import { ShoeWithDetails } from "../PUMPED-api/api/shoe/types";
 
 
 const CheckCustomerID = () => {
@@ -35,7 +35,7 @@ interface Props { }
 
 export const Cart = (props: Props): JSX.Element => {
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<any>(undefined);
   const [data, setData] = useState<OrderItem[]>();
   const [reFetch, setReFetch] = useState(false);
 
@@ -44,8 +44,8 @@ export const Cart = (props: Props): JSX.Element => {
       try {
         const cart = await getCart();
         setData(cart);
-      } catch (error) {
-        setError(error);
+      } catch (error: any) {
+        setError(error.message);
       } finally {
         setIsLoading(false);
       }
@@ -206,7 +206,7 @@ const QuantitySelector = ({
   return (
     <StyledSelect value={value} onChange={onChange}>
       {options.map((n) => (
-        <option value={n}>{n}</option>
+        <option value={n} key={n}>{n}</option>
       ))}
     </StyledSelect>
   );

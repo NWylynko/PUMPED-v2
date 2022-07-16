@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import type { CustomerWithID } from '@/PUMPED-api/api/customer/types';
+import type { CustomerWithID } from '../PUMPED-api/api/customer/types';
 // import { setCustomerIDHeader } from './api'
 
 interface Istore {

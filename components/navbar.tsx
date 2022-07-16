@@ -2,31 +2,47 @@ import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
+import bannerImg from "../public/banner.png"
 
 export default function Navbar() {
   return (
     <Container>
       <StyledHeader>
         <div></div>
-        <StyledLink href="/">
-          <PUMPEDContainer>
-            <PUMPED src={"/public/PUMPED.png"} height="300" width="600" />
-          </PUMPEDContainer>
+        <StyledLink href="/" passHref>
+          <A>
+            <PUMPEDContainer>
+              <PUMPED src={bannerImg} height="300" width="600" />
+            </PUMPEDContainer>
+          </A>
         </StyledLink>
         <List>
           <Item>
-            <Link href={"/cart"}>
-              <h3>Cart</h3>
+            <Link href={"/"} passHref>
+              <A>
+                <h3>Home</h3>
+              </A>
             </Link>
           </Item>
           <Item>
-            <Link href={"/wishlist"}>
-              <h3>Wishlist</h3>
+            <Link href={"/cart"} passHref>
+              <A>
+                <h3>Cart</h3>
+              </A>
             </Link>
           </Item>
           <Item>
-            <Link href={"/me"}>
-              <h3>Me</h3>
+            <Link href={"/wishlist"} passHref>
+              <A>
+                <h3>Wishlist</h3>
+              </A>
+            </Link>
+          </Item>
+          <Item>
+            <Link href={"/me"} passHref>
+              <A>
+                <h3>Me</h3>
+              </A>
             </Link>
           </Item>
         </List>
@@ -55,6 +71,8 @@ const List = styled.ul`
   list-style-type: none;
   align-items: center;
 
+  padding: 0;
+
   @media (max-width: 1040px) {
     justify-content: center;
     padding: 0;
@@ -65,6 +83,13 @@ const List = styled.ul`
 const Item = styled.li`
   margin: 3px;
   padding: 3px;
+`;
+
+const A = styled.a`
+  text-decoration: none;
+
+  margin: 0;
+  padding: 0;
 `;
 
 const PUMPED = styled(Image)`

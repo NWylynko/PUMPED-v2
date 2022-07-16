@@ -1,14 +1,14 @@
-import type { BrandWithID, Brand, partOfBrand, partOfBrandWithID } from '@/PUMPED-api/api/brand/types';
-import type { removedCartItem, clearedCart, AddedToCart } from '@/PUMPED-api/api/cart/types';
-import type { Collection, CollectionWithID } from '@/PUMPED-api/api/collection/types';
-import type { Colour, ColourWithID, partOfColour, updatedColour, addedColour } from '@/PUMPED-api/api/colour/types';
+import type { BrandWithID, Brand, partOfBrand, partOfBrandWithID } from '../PUMPED-api/api/brand/types';
+import type { removedCartItem, clearedCart, AddedToCart } from '../PUMPED-api/api/cart/types';
+import type { Collection, CollectionWithID } from '../PUMPED-api/api/collection/types';
+import type { Colour, ColourWithID, partOfColour, updatedColour, addedColour } from '../PUMPED-api/api/colour/types';
 
-import type { ShoeWithColours, ShoeWithDetails } from '@/PUMPED-api/api/shoe/types';
-import type { Review } from '@/PUMPED-api/api/review/types';
-import type { Customer, CustomerWithID } from '@/PUMPED-api/api/customer/types';
-import type { partOfOrderItem, OrderItem, partOfOrderItemWithIDs } from '@/PUMPED-api/api/order/types';
+import type { ShoeWithColours, ShoeWithDetails } from '../PUMPED-api/api/shoe/types';
+import type { Review } from '../PUMPED-api/api/review/types';
+import type { Customer, CustomerWithID } from '../PUMPED-api/api/customer/types';
+import type { partOfOrderItem, OrderItem, partOfOrderItemWithIDs } from '../PUMPED-api/api/order/types';
 
-import type { WishListWithShoe, WishList } from '@/PUMPED-api/api/wishlist/types'
+import type { WishListWithShoe, WishList } from '../PUMPED-api/api/wishlist/types'
 
 const x = {
   get: async (url: string) => {

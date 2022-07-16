@@ -1,16 +1,16 @@
 import React, { useEffect, useContext, useState } from "react";
 import { useRouter } from 'next/router'
-import { addToCart, getShoe, addToWishlist, removeFromWishlist, isInWishlist } from "@/lib/api";
-import type { ShoeWithDetails as ShoeProps } from "@/PUMPED-api/api/shoe/types";
+import { addToCart, getShoe, addToWishlist, removeFromWishlist, isInWishlist } from "../../lib/api";
+import type { ShoeWithDetails as ShoeProps } from "../../PUMPED-api/api/shoe/types";
 import styled from "styled-components";
-import { Stars } from "@/components/Stars";
-import { Images } from "@/components/Images";
+import { Stars } from "../../components/Stars";
+import { Images } from "../../components/Images";
 import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
 import { AiOutlineStar } from "@react-icons/all-files/ai/AiOutlineStar";
 
-import Reviews from "@/components/reviews";
-import StoreContext from "@/lib/store";
-import { Loading } from "@/components/loading";
+import Reviews from "../../components/reviews";
+import StoreContext from "../../lib/store";
+import { Loading } from "../../components/loading";
 import { TiTickOutline } from "@react-icons/all-files/ti/TiTickOutline";
 import { TiTimesOutline } from "@react-icons/all-files/ti/TiTimesOutline";
 
@@ -22,6 +22,7 @@ function ShoePage() {
 
   const isLoading = false;
   const error = undefined;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const data = {} as ShoeProps;
 
   useEffect(() => {
@@ -149,7 +150,7 @@ const Button = ({ children, onClick, Success, Fail, style }: ButtonProps) => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [failed, setFailed] = useState(false);
-  const [error, setError] = useState();
+  const [error, setError] = useState<any>(undefined);
 
   const clickHandler = async () => {
     try {
@@ -160,8 +161,8 @@ const Button = ({ children, onClick, Success, Fail, style }: ButtonProps) => {
         await onClick();
       }
       setSuccess(true);
-    } catch (error) {
-      setError(error);
+    } catch (error: any) {
+      setError(error.message);
       setFailed(true);
     } finally {
       setLoading(false);

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-import { ShoeWithColours } from "@/PUMPED-api/api/shoe/types";
-import { ShoeColour } from "@/PUMPED-api/api/colour/types";
+import { ShoeWithColours } from "../PUMPED-api/api/shoe/types";
+import { ShoeColour } from "../PUMPED-api/api/colour/types";
 import styled from "styled-components";
 import Link from "next/link";
-import { Stars } from "@/components/Stars";
-import { StyledPriceText, Title } from "@/pages/shoe/[id]";
+import { Stars } from "../components/Stars";
+import { StyledPriceText, Title } from "../pages/shoe/[id]";
 
 export const Shoes = ({ data }: { data: ShoeWithColours[] }) => {
   useEffect(() => {

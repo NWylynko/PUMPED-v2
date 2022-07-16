@@ -1,8 +1,10 @@
 import HowLongAgo from "@nwylynko/how-long-ago";
 import { ReactElement } from "react";
 import styled from "styled-components";
-import { Loading } from "@/components/loading";
-import { Stars } from "@/components/Stars";
+import { Loading } from "../components/loading";
+import { Stars } from "../components/Stars";
+import { getReviews } from "../lib/api";
+import { Review } from "../PUMPED-api/api/review/types";
 
 interface Props {
   shoeID: number;
@@ -15,7 +17,7 @@ function Reviews({ shoeID }: Props): ReactElement {
 
   const isLoading = false;
   const error = undefined;
-  const data = []
+  const data: Review[] = []
 
   if (isLoading) {
     return <Loading />;
@@ -38,7 +40,7 @@ function Reviews({ shoeID }: Props): ReactElement {
     <Container>
       <h2>Reviews</h2>
       {data.map(({ firstName, lastName, stars, message, timestamp }, index) => (
-        <Review key={index}>
+        <ReviewContainer key={index}>
           <Horizontal>
             <Text>{firstName}</Text>
             <Text>{lastName}</Text>
@@ -46,7 +48,7 @@ function Reviews({ shoeID }: Props): ReactElement {
             <Text>{HowLongAgo(timestamp)}</Text>
           </Horizontal>
           <Message>{message}</Message>
-        </Review>
+        </ReviewContainer>
       ))}
     </Container>
   );
@@ -59,7 +61,7 @@ const Container = styled.div`
   text-align: center;
 `;
 
-const Review = styled.div`
+const ReviewContainer = styled.div`
   margin: 10px;
   padding: 10px;
   min-width: 500px;

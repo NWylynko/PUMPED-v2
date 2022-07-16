@@ -1,11 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
-import StoreContext from "@/lib/store";
+import StoreContext from "../lib/store";
 import styled from "styled-components";
-import { clearWishlist, getWishlist, getShoe } from "@/lib/api";
-import { Loading } from "@/components/loading";
+import { clearWishlist, getWishlist, getShoe } from "../lib/api";
+import { Loading } from "../components/loading";
 import Link from "next/link";
-import { Stars } from "@/components/Stars";
-import { ShoeWithDetails } from "@/PUMPED-api/api/shoe/types";
+import { Stars } from "../components/Stars";
+import { ShoeWithDetails } from "../PUMPED-api/api/shoe/types";
 
 export const CheckCustomerID = () => {
   const { customer } = useContext(StoreContext);
@@ -26,7 +26,7 @@ interface Props { }
 
 const Wishlist = (props: Props): JSX.Element => {
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<any>(undefined);
   const [data, setData] = useState<{ ShoeID: number; }[]>();
   const [reFetch, setReFetch] = useState(false)
 
@@ -35,8 +35,8 @@ const Wishlist = (props: Props): JSX.Element => {
       try {
         const wishlist = await getWishlist();
         setData(wishlist);
-      } catch (error) {
-        setError(error);
+      } catch (error: any) {
+        setError(error.message);
       } finally {
         setIsLoading(false);
       }

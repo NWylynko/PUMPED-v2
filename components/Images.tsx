@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import type { ShoeColour } from "@/PUMPED-api/api/colour/types";
+import type { ShoeColour } from "../PUMPED-api/api/colour/types";
 
 export function Images({ colours = [], CoverImage }: ImageProps) {
   const [selectedImage, setSelectedImage] = useState(CoverImage);
 
   return (
     <Container>
-      <Image src={`/image/${selectedImage}/high`} />
+      <Image src={`/image/${selectedImage}/high`} alt="image" />
       <div>
         {colours.map(({ ImageID }) => (
           <SmallImage
+            key={ImageID}
             onClick={() => { setSelectedImage(ImageID) }}
             src={`/image/${ImageID}/low`}
             selected={ImageID === selectedImage}
+            alt="image"
           />
         ))}
       </div>

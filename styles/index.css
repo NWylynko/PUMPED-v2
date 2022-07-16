@@ -3,9 +3,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* background-color: rgb(29, 29, 29); */
-  /* background-color: rgb(32, 28, 28); */
-  background-color: #131212;
+  background-color: #141111;
 }
 
 p, b, h2, h3, h4, h5, h6, a, li, button, label, select, option {
