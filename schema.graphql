@@ -1,0 +1,115 @@
+
+# this is purely a schema, no queries or mutations
+
+type Brand {
+  id: String! @id
+  name: String!
+  website: String
+  icon: Image
+  shoes: [Shoe]
+}
+
+type Collection {
+  id: String! @id
+  name: String!
+  shoes: [Shoe]
+}
+
+type Colour {
+  id: String! @id
+  shoe: Shoe!
+  name: String!
+  hex: String!
+  image: Image!
+}
+
+type Customer {
+  id: String! @id
+  firstName: String!
+  lastName: String!
+  orders: [Order]
+  reviews: [Review]
+  wishlist: [WishList]
+}
+
+type Image {
+  id: String! @id
+  name: String!
+  colour: Colour!
+}
+
+type Order {
+  id: String! @id
+  customer: Customer!
+  dateOfPurchase: DateTime
+  paid: Boolean!
+  deliveryAddress: String
+  activeCart: Boolean!
+  items: [OrderItem]
+}
+
+type OrderItem {
+  order: Order!
+  shoe: Shoe!
+  stock: Stock!
+  quantity: Int!
+  price: Int
+}
+
+type Review {
+  shoe: Shoe!
+  customer: Customer!
+  stars: Int!
+  message: String
+  timestamp: DateTime!
+}
+
+type Section {
+  id: String! @id
+  name: String!
+}
+
+type Shoe {
+  id: String! @id
+  name: String!
+  description: String!
+  price: Int!
+  releaseDate: DateTime!
+  stars: Int
+  brand: Brand!
+  style: Style!
+  section: Section!
+  collection: Collection!
+  coverImage: Image!
+  images: [Image]
+  tags: [Tag]
+}
+
+type Stock {
+  id: String! @id
+  shoe: Shoe!
+  colour: Colour!
+  size: Int!
+  quantity: Int!
+}
+
+type Style {
+  id: String! @id
+  name: String!
+}
+
+type Tag {
+  id: String! @id
+  shoe: Shoe!
+  tag: String!
+}
+
+type WishList {
+  id: String! @id
+  customer: Customer!
+  shoe: Shoe!
+}
+
+
+
+
