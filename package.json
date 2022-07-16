@@ -5,7 +5,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate-types": "graphql-codegen --config codegen.yml",
+    "push-schema": "curl -X POST localhost:8080/admin/schema --data-binary '@schema.graphql'"
   },
   "dependencies": {
     "@nwylynko/how-long-ago": "^1.0.6",

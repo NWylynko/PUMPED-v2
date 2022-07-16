@@ -2,7 +2,7 @@
 # this is purely a schema, no queries or mutations
 
 type Brand {
-  id: String! @id
+  id: ID!
   name: String!
   website: String
   icon: Image
@@ -10,13 +10,13 @@ type Brand {
 }
 
 type Collection {
-  id: String! @id
+  id: ID!
   name: String!
   shoes: [Shoe]
 }
 
 type Colour {
-  id: String! @id
+  id: ID!
   shoe: Shoe!
   name: String!
   hex: String!
@@ -24,7 +24,7 @@ type Colour {
 }
 
 type Customer {
-  id: String! @id
+  id: ID!
   firstName: String!
   lastName: String!
   orders: [Order]
@@ -33,13 +33,13 @@ type Customer {
 }
 
 type Image {
-  id: String! @id
+  id: ID!
   name: String!
   colour: Colour!
 }
 
 type Order {
-  id: String! @id
+  id: ID!
   customer: Customer!
   dateOfPurchase: DateTime
   paid: Boolean!
@@ -65,12 +65,12 @@ type Review {
 }
 
 type Section {
-  id: String! @id
+  id: ID!
   name: String!
 }
 
 type Shoe {
-  id: String! @id
+  id: ID!
   name: String!
   description: String!
   price: Int!
@@ -86,7 +86,7 @@ type Shoe {
 }
 
 type Stock {
-  id: String! @id
+  id: ID!
   shoe: Shoe!
   colour: Colour!
   size: Int!
@@ -94,18 +94,18 @@ type Stock {
 }
 
 type Style {
-  id: String! @id
+  id: ID!
   name: String!
 }
 
 type Tag {
-  id: String! @id
+  id: ID!
   shoe: Shoe!
   tag: String!
 }
 
 type WishList {
-  id: String! @id
+  id: ID!
   customer: Customer!
   shoe: Shoe!
 }
