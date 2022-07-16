@@ -7,7 +7,10 @@ interface Istore {
   setCustomer: React.Dispatch<React.SetStateAction<CustomerWithID | undefined>>
 }
 
-const StoreContext = createContext({} as Istore);
+const StoreContext = createContext<Istore>({
+  customer: undefined,
+  setCustomer: () => { }
+});
 export default StoreContext;
 
 export function StoreProvider({
