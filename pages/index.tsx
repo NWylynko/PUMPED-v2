@@ -12,7 +12,9 @@ function Home() {
   // const error = undefined;
   // const data = [] as ShoeWithColours[];
 
-  return null;
+  const { data } = trpc.brand.get.useQuery({ brandId: "0xf" })
+
+  return <pre>{JSON.stringify(data, null, 2)}</pre>;
 
   // if (isLoading) {
   //   return <Loading />

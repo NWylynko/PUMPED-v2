@@ -2,7 +2,7 @@ import { setupTRPC } from '@trpc/next';
 import type { AppRouter } from '../pages/api/trpc/[trpc]';
 
 
-export const trpc = setupTRPC<AppRouter>({
+const t = setupTRPC<AppRouter>({
   config({ ctx }) {
     if (typeof window !== 'undefined') {
       // during client requests
@@ -33,3 +33,6 @@ export const trpc = setupTRPC<AppRouter>({
   },
   ssr: true,
 });
+
+export const withTRPC = t.withTRPC
+export const trpc = t.proxy;
