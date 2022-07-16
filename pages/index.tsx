@@ -12,9 +12,9 @@ function Home() {
   // const error = undefined;
   // const data = [] as ShoeWithColours[];
 
-  const { data } = trpc.useQuery(["example.hello", { text: "from next" }]);
+  const { data } = trpc.useQuery(["brand.getBrands"]);
 
-  console.log(data?.greeting);
+  console.log(data);
 
   return null;
 

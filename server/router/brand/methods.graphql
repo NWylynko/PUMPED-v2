@@ -1,0 +1,19 @@
+# import * from "http://localhost:8080/graphql"
+
+mutation createBrand($brand: AddBrandInput!) {
+  addBrand(input: [$brand]) {
+    brand {
+      id
+      name
+      website
+    }
+  }
+}
+
+query getBrands {
+	queryBrand {
+		id
+		name
+		website
+	}
+}

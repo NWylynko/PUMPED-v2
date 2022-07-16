@@ -1,0 +1,16 @@
+overwrite: true
+schema: "http://localhost:8080/graphql"
+documents:
+  - "server/**/*.graphql"
+generates:
+  server/types/graphql.ts:
+    plugins:
+      - typescript
+  server/:
+    preset: near-operation-file
+    presetConfig:
+      baseTypesPath: types/graphql
+      extension: .generated.ts
+    plugins:
+      - typescript-operations
+      - typescript-generic-sdk

@@ -1,9 +1,9 @@
 import * as trpc from '@trpc/server';
 
-import { exampleRouter } from "./example";
+import { brandRouter } from "./brand/router";
 
 export const appRouter = trpc.router()
-  .merge("example.", exampleRouter)
+  .merge("brand.", brandRouter)
 
 // export type definition of API
 export type AppRouter = typeof appRouter;

@@ -6,16 +6,19 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate-types": "graphql-codegen --config codegen.yml",
+    "generate-types": "graphql-codegen",
     "push-schema": "curl -X POST localhost:8080/admin/schema --data-binary '@schema.graphql'"
   },
   "dependencies": {
+    "@apollo/client": "^3.6.9",
     "@nwylynko/how-long-ago": "^1.0.6",
     "@react-icons/all-files": "^4.1.0",
     "@trpc/client": "^9.26.0",
     "@trpc/next": "^9.26.0",
     "@trpc/react": "^9.26.0",
     "@trpc/server": "^9.26.0",
+    "graphql": "^16.5.0",
+    "graphql-tag": "^2.12.6",
     "next": "^12.2.2",
     "next-seo": "^5.4.0",
     "react": "^18.2.0",
@@ -26,12 +29,22 @@
     "zod": "^3.17.3"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^2.8.1",
+    "@graphql-codegen/named-operations-object": "^2.3.0",
+    "@graphql-codegen/near-operation-file-preset": "^2.3.1",
+    "@graphql-codegen/typescript": "^2.7.1",
+    "@graphql-codegen/typescript-apollo-client-helpers": "^2.2.1",
+    "@graphql-codegen/typescript-generic-sdk": "^2.4.1",
+    "@graphql-codegen/typescript-operations": "^2.5.1",
+    "@graphql-codegen/typescript-react-apollo": "^3.3.1",
     "@types/node": "^18.0.5",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "@types/styled-components": "^5.1.25",
     "eslint": "^8.19.0",
     "eslint-config-next": "^12.2.2",
+    "graphql-codegen-apollo-next-ssr": "^1.7.4",
+    "graphql-codegen-typescript-validation-schema": "^0.5.0",
     "typescript": "^4.7.4"
   }
 }
