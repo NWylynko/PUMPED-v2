@@ -83,6 +83,7 @@ type Shoe {
   coverImage: Image!
   images: [Image]
   tags: [Tag]
+  reviews: [Review]
 }
 
 type Stock {

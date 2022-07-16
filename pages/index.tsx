@@ -12,10 +12,6 @@ function Home() {
   // const error = undefined;
   // const data = [] as ShoeWithColours[];
 
-  const { data } = trpc.useQuery(["brand.getBrands"]);
-
-  console.log(data);
-
   return null;
 
   // if (isLoading) {
