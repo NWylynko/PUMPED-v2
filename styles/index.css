@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* background-color: rgb(29, 29, 29); */
+  /* background-color: rgb(32, 28, 28); */
+  background-color: #131212;
+}
+
+p, b, h2, h3, h4, h5, h6, a, li, button, label, select, option {
+  margin: 0;
+  color: rgb(241, 239, 239);
+
+  font-family: allumi-std,sans-serif;
+  font-weight: 400;
+  font-style: normal;
+
+}
+
+button, input {
+  margin: 20px;
+  padding: 10px;
+
+  min-width: 150px;
+  max-height: 75px;
+
+  background-color: #f04141;
+  color: white;
+
+  border: none;
+
+  transition: all 100ms ease-in-out;
+
+  /* font-size: px; */
+
+}
+
+button:hover {
+  background-color: #f36868;
+}
+
+/* page transitions */
+.fade-enter {
+  opacity: 0;
+  z-index: 1;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 250ms ease-in-out;
+}
+
+.fade-exit {
+  opacity: 0;
+  z-index: 0;
+}
