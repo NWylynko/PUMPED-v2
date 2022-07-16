@@ -1,9 +1,12 @@
 {
   "name": "PUMPED-v2",
-  "version": "0.0.55",
+  "version": "0.0.1",
   "main": "index.js",
   "scripts": {
-    "refresh-deps": "bun bun --use next"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@nwylynko/how-long-ago": "^1.0.6",
