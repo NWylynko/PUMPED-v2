@@ -1,0 +1,19 @@
+query getCustomer($customerId: String!) {
+	getCustomer(customerId: $customerId) {
+		customerId
+		name
+		email
+		picture
+	}
+}
+
+mutation createCustomer($customer: AddCustomerInput!) {
+	addCustomer(input: [$customer]) {
+		customer {
+			customerId
+			name
+			email
+			picture
+		}
+	}
+}

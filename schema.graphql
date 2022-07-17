@@ -2,21 +2,21 @@
 # this is purely a schema, no queries or mutations
 
 type Brand {
-  id: ID!
+  brandId: ID!
   name: String!
   website: String
-  icon: Image
-  shoes: [Shoe]
+  icon: String
+  shoes: [Shoe] @hasInverse(field: brand)
 }
 
 type Collection {
-  id: ID!
+  collectionId: ID!
   name: String!
-  shoes: [Shoe]
+  shoes: [Shoe] @hasInverse(field: collection)
 }
 
 type Colour {
-  id: ID!
+  colourId: ID!
   shoe: Shoe!
   name: String!
   hex: String!
@@ -24,31 +24,33 @@ type Colour {
 }
 
 type Customer {
-  id: ID!
-  firstName: String!
-  lastName: String!
-  orders: [Order]
-  reviews: [Review]
-  wishlist: [WishList]
+  customerId: String! @id
+  email: String! @id
+  name: String!
+  picture: String
+  orders: [Order] @hasInverse(field: customer)
+  reviews: [Review] @hasInverse(field: customer)
+  wishlist: [WishList] @hasInverse(field: customer)
 }
 
 type Image {
-  id: ID!
+  imageId: ID!
   name: String!
-  colour: Colour!
 }
 
 type Order {
-  id: ID!
+  orderId: ID!
   customer: Customer!
   dateOfPurchase: DateTime
   paid: Boolean!
+  total: Int
   deliveryAddress: String
-  activeCart: Boolean!
-  items: [OrderItem]
+  activeCart: Boolean! @search
+  items: [OrderItem] @hasInverse(field: order)
 }
 
 type OrderItem {
+  orderItemId: ID!
   order: Order!
   shoe: Shoe!
   stock: Stock!
@@ -57,6 +59,7 @@ type OrderItem {
 }
 
 type Review {
+  reviewId: ID!
   shoe: Shoe!
   customer: Customer!
   stars: Int!
@@ -65,12 +68,12 @@ type Review {
 }
 
 type Section {
-  id: ID!
+  sectionId: ID!
   name: String!
 }
 
 type Shoe {
-  id: ID!
+  shoeId: ID!
   name: String!
   description: String!
   price: Int!
@@ -81,13 +84,15 @@ type Shoe {
   section: Section!
   collection: Collection!
   coverImage: Image!
-  images: [Image]
-  tags: [Tag]
-  reviews: [Review]
+  colours: [Colour] @hasInverse(field: shoe)
+  tags: [Tag] @hasInverse(field: shoe)
+  reviews: [Review] @hasInverse(field: shoe)
+  stock: [Stock] @hasInverse(field: shoe)
+  colours: [Colour] @hasInverse(field: shoe)
 }
 
 type Stock {
-  id: ID!
+  stockId: ID!
   shoe: Shoe!
   colour: Colour!
   size: Int!
@@ -95,18 +100,18 @@ type Stock {
 }
 
 type Style {
-  id: ID!
+  styleId: ID!
   name: String!
 }
 
 type Tag {
-  id: ID!
+  tagId: ID!
   shoe: Shoe!
   tag: String!
 }
 
 type WishList {
-  id: ID!
+  wishListId: ID!
   customer: Customer!
   shoe: Shoe!
 }

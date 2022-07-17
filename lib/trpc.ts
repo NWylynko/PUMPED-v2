@@ -1,8 +1,10 @@
 import { setupTRPC } from '@trpc/next';
 import type { AppRouter } from '../pages/api/trpc/[trpc]';
+import { parse } from 'cookie';
 
 
 const t = setupTRPC<AppRouter>({
+  // @ts-ignore
   config({ ctx }) {
     if (typeof window !== 'undefined') {
       // during client requests
@@ -23,11 +25,21 @@ const t = setupTRPC<AppRouter>({
       ? `http://localhost:3000/api/trpc` // need domain here (either directly or from env)
       : 'http://localhost:3000/api/trpc';
 
+    const cookie = ctx?.req?.headers.cookie
+    let jwt;
+
+    if (cookie) {
+      const obj = parse(cookie)
+      jwt = obj.jwt !== "undefined" ? obj.jwt : undefined
+    }
+
+
     return {
       url,
       headers: {
         // optional - inform server that it's an ssr request
         'x-ssr': '1',
+        'x-jwt': jwt
       },
     };
   },

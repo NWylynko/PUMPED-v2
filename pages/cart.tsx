@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from "react";
-import StoreContext from "../lib/store";
 import styled from "styled-components";
 import {
   checkoutCart,
@@ -12,10 +11,11 @@ import type { OrderItem } from "../PUMPED-api/api/order/types";
 import { Loading } from "../components/loading";
 import Link from "next/link";
 import { ShoeWithDetails } from "../PUMPED-api/api/shoe/types";
+import { trpc } from "../lib/trpc";
 
 
 const CheckCustomerID = () => {
-  const { customer } = useContext(StoreContext);
+  const { data: customer } = trpc.customer.get.useQuery();
 
   if (!customer) {
     return (
@@ -158,7 +158,7 @@ const Shoe = ({ ShoeID, StockID, quantity }: OrderItem) => {
 
   return (
     <Container key={ShoeID}>
-      <SmallImage src={`/image/${data.CoverImage}/low`} />
+      <SmallImage src={`/api/image/${data.CoverImage}/low`} />
       <NameLink href={`/shoe/${ShoeID}`}>
         <Name>{data.Name}</Name>
       </NameLink>

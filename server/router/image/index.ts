@@ -1,0 +1,1 @@
+export { imageRouter } from "./router"

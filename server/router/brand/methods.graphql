@@ -1,28 +1,27 @@
 
 query getBrand($brandId: ID!) {
-	getBrand(id: $brandId) {
-		id
+	getBrand(brandId: $brandId) {
+		brandId
 		name
 		website
-    icon {
-      id
-      name
-    }
+		icon
 	}
 }
 
 mutation createBrand($brand: AddBrandInput!) {
-  addBrand(input: [$brand]) {
-    brand {
-      id
-    }
-  }
+	addBrand(input: [$brand]) {
+		brand {
+			brandId
+			name
+			website
+		}
+	}
 }
 
 mutation updateBrand($brandId: ID!, $change: BrandPatch!) {
-	updateBrand(input: { filter: { id: [$brandId] }, set: $change }) {
+	updateBrand(input: { filter: { brandId: [$brandId] }, set: $change }) {
 		brand {
-			id
+			brandId
 			name
 			website
 		}
@@ -30,9 +29,9 @@ mutation updateBrand($brandId: ID!, $change: BrandPatch!) {
 }
 
 mutation removeBrand($brandId: ID!) {
-	deleteBrand(filter: { id: [$brandId] }) {
+	deleteBrand(filter: { brandId: [$brandId] }) {
 		brand {
-			id
+			brandId
 		}
 	}
 }

@@ -38,13 +38,6 @@ export default function Navbar() {
               </A>
             </Link>
           </Item>
-          <Item>
-            <Link href={"/me"} passHref>
-              <A>
-                <h3>Me</h3>
-              </A>
-            </Link>
-          </Item>
         </List>
       </StyledHeader>
     </Container>
@@ -101,7 +94,7 @@ const PUMPEDContainer = styled.div`
   align-items: center;
   display: inline-flex;
 
-  animation: slideup 2s ease-in-out;
+  /* animation: slideup 2s ease-in-out;
 
   @keyframes slideup {
     from {
@@ -111,7 +104,7 @@ const PUMPEDContainer = styled.div`
     to {
       height: 300px;
     }
-  }
+  } */
 `;
 
 const StyledLink = styled(Link)`

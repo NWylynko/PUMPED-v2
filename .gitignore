@@ -38,3 +38,6 @@ dgraph/
 
 server/types/graphql.ts
 *.generated.ts
+
+# firebase
+service-account.json

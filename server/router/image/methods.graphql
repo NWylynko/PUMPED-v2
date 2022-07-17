@@ -1,0 +1,19 @@
+mutation createImage($image: AddImageInput!) {
+	addImage(input: [$image]) {
+		image {
+			imageId
+			shoe {
+				shoeId
+			}
+		}
+	}
+}
+
+mutation addColour($newColour: AddColourInput!) {
+	addColour(input: [$newColour]) {
+		colour {
+			name
+			hex
+		}
+	}
+}

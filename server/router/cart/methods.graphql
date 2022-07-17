@@ -1,11 +1,92 @@
-query getCart($customerId: ID!) {
-	queryOrder(filter: {id: [$customerId]}) {
-		id
+query getActiveCart($customerId: String!) {
+	getCustomer(customerId: $customerId) {
+		orders(filter: { activeCart: true }) {
+			orderId
+		}
+	}
+}
+
+mutation createActiveCart($customerId: String!) {
+	addOrder(input: { activeCart: true, paid: false, customer: { customerId: $customerId }}) {
+		order {
+			orderId
+		}
+	}
+}
+
+mutation AddShoeToCart($orderId: ID!, $shoeId: ID!, $stockId: ID!, $quantity: Int!) {
+	addOrderItem(input: [{ order: { orderId: $orderId }, shoe: { shoeId: $shoeId }, stock: { stockId: $stockId }, quantity: $quantity }]) {
+		orderItem {
+			orderItemId
+		}
+	}
+}
+
+query getOrderDetails($orderId: ID!) {
+	getOrder(orderId: $orderId) {
+		paid
+		activeCart
 		items {
+			orderItemId
 			shoe {
-				id
-				name
+				shoeId
+				price
 			}
+			quantity
+		}
+	}
+}
+
+mutation SetOrderShoePrice($orderItemId: ID!, $price: Int!) {
+	updateOrderItem(input: { filter: { orderItemId: [$orderItemId] }, set: { price: $price } }) {
+		orderItem {
+			orderItemId
+		}
+	}
+}
+
+mutation processCart($orderId: ID!, $address: String!, $date: DateTime!, $total: Int!) {
+	updateOrder(input: {
+		filter: {
+			orderId: [$orderId]
+		}, set: {
+			deliveryAddress: $address,
+			dateOfPurchase: $date,
+			activeCart: false,
+			total: $total
+		}
+	}) {
+		order {
+			orderId
+			activeCart
+			customer {
+				customerId
+				name
+				email
+			}
+			dateOfPurchase
+			deliveryAddress
+			items {
+				orderItemId
+				shoe {
+					shoeId
+					name
+					brand {
+						name
+					}
+					coverImage {
+						imageId
+						name
+						colour {
+							name
+							hex
+						}
+					}
+				}
+				price
+				quantity
+			}
+			paid
 		}
 	}
 }

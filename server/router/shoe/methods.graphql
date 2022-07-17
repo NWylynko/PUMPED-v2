@@ -1,0 +1,45 @@
+query ShoesJustIds {
+	queryShoe {
+		shoeId
+	}
+}
+
+query ShoeLightDetails($shoeId: ID!) {
+	getShoe(shoeId: $shoeId) {
+		shoeId
+		name
+		brand {
+			brandId
+			name
+		}
+		stars
+		price
+		coverImage {
+			imageId
+		}
+		images {
+			imageId
+			name
+			colour {
+				hex
+				name
+			}
+		}
+	}
+}
+
+mutation setCoverImage($shoeId: ID!, $imageId: ID!) {
+	updateShoe(input: { filter: { shoeId: [$shoeId] }, set: { coverImage: { imageId: $imageId } }  }) {
+		shoe {
+			shoeId
+			coverImage {
+				imageId
+				name
+				colour {
+					hex
+					name
+				}
+			}
+		}
+	}
+}

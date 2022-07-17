@@ -9,10 +9,10 @@ import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
 import { AiOutlineStar } from "@react-icons/all-files/ai/AiOutlineStar";
 
 import Reviews from "../../components/reviews";
-import StoreContext from "../../lib/store";
 import { Loading } from "../../components/loading";
 import { TiTickOutline } from "@react-icons/all-files/ti/TiTickOutline";
 import { TiTimesOutline } from "@react-icons/all-files/ti/TiTimesOutline";
+import { trpc } from "../../lib/trpc";
 
 function ShoePage() {
   const router = useRouter();
@@ -25,9 +25,9 @@ function ShoePage() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const data = {} as ShoeProps;
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
+  // useEffect(() => {
+  //   console.log(data);
+  // }, [data]);
 
   if (isLoading) {
     return <Loading />;
@@ -62,13 +62,13 @@ function Shoe({
   colours,
   stock,
 }: ShoeProps) {
-  const { customer } = useContext(StoreContext);
+  const { data: customer } = trpc.customer.get.useQuery();
 
   return (
     <Page>
       <Header>
         <Horizontal>
-          <IconImage src={`/image/${BrandIcon}/low`} />
+          <IconImage src={`/api/image/${BrandIcon}/low`} />
           <Title>{Name}</Title>
         </Horizontal>
 

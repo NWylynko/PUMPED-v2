@@ -6,15 +6,26 @@ import styled from "styled-components";
 import Link from "next/link";
 import { Stars } from "../components/Stars";
 import { StyledPriceText, Title } from "../pages/shoe/[id]";
+import { trpc } from "../lib/trpc";
+import { Loading } from "./loading";
 
-export const Shoes = ({ data }: { data: ShoeWithColours[] }) => {
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
+export const Shoes = () => {
+
+  const { data } = trpc.shoe.getAll.useQuery();
+
+  if (!data) {
+    return <Loading />
+  }
 
   return (
     <Page>
-      <Grid>{data.map(Shoe)}</Grid>
+      <Grid>{data.map((item) => {
+        if (!item) return null;
+
+        const { shoeId } = item;
+
+        return <Shoe key={shoeId} shoeId={shoeId} />
+      })}</Grid>
     </Page>
   );
 };
@@ -41,51 +52,62 @@ const Grid = styled.main`
   }
 `;
 
-const Shoe = ({
-  Name,
-  Price,
-  ID,
-  CoverImage,
-  Brand,
-  colours,
-  BrandIcon,
-  Stars: stars,
-}: ShoeWithColours) => {
-  const [imageID, setImageID] = useState(CoverImage);
+interface ShoeProps {
+  shoeId: string
+}
+
+const Shoe = ({ shoeId }: ShoeProps) => {
+
+  const { data } = trpc.shoe.getLightDetails.useQuery({ shoeId });
+
+  console.log('shoe', data)
+
+  const [imageID, setImageID] = useState(data?.coverImage.imageId);
+
+  if (!data) return null;
 
   return (
-    <ShoeContainer key={ID} href={encodeURI(`/shoe/${ID}`)}>
-      <ShoeText>
-        <Horizontal>
-          <IconImg ImageID={BrandIcon} />
-          <Stars n={stars} />
-          <StyledPriceText style={{ color: "black" }}>${Price}</StyledPriceText>
-        </Horizontal>
-        <div>
-          <Title
-            style={{
-              color: "black",
-              textAlign: "center",
-              marginTop: 20,
-              fontSize: 16,
-              marginBottom: 0,
-              paddingBottom: 0,
-            }}
-          >
-            {Name}
-          </Title>
-          <Colours colours={colours} setImageID={setImageID} />
-        </div>
-      </ShoeText>
-      <CoverImg ImageID={imageID} />
-    </ShoeContainer>
+    <Link href={encodeURI(`/shoe/${shoeId}`)} passHref >
+      <StyledA>
+        <ShoeContainer>
+          <CoverImg ImageID={imageID} />
+          <ShoeText>
+            <Horizontal>
+              {/* <IconImg ImageID={data?.brand.brandId} /> */}
+              <StyledPriceText style={{ color: "black" }}>{data.brand.name}</StyledPriceText>
+              <Stars n={data?.stars ?? 0} />
+              <StyledPriceText style={{ color: "black" }}>${data?.price}</StyledPriceText>
+            </Horizontal>
+            <div>
+              <Title
+                style={{
+                  color: "black",
+                  textAlign: "center",
+                  marginTop: 20,
+                  fontSize: 16,
+                  paddingBottom: 0,
+                }}
+              >
+                {data.name}
+              </Title>
+              {/* <Colours colours={colours} setImageID={setImageID} /> */}
+            </div>
+          </ShoeText>
+        </ShoeContainer>
+      </StyledA>
+    </Link>
   );
 };
 
-const ShoeContainer = styled(Link)`
+const StyledA = styled.a`
+  text-decoration: none;
+`;
+
+const ShoeContainer = styled.div`
   margin: 10px;
   padding: 10px;
   max-width: 300px;
+  position: relative;
 `;
 
 const Horizontal = styled.div`
@@ -102,6 +124,7 @@ const Horizontal = styled.div`
 
 const ShoeText = styled.div`
   position: absolute;
+  inset: 10px;
   display: inline-flex;
   flex-direction: column;
   justify-content: space-between;
@@ -156,8 +179,8 @@ const ColourCircle = styled.div`
   }
 `;
 
-const IconImg = ({ ImageID }: { ImageID: string | number }) => {
-  const url = `/image/${ImageID}/low`;
+const IconImg = ({ ImageID }: { ImageID: string }) => {
+  const url = `/api/image/${ImageID}/low`;
 
   return <IconImage src={url} />;
 };
@@ -170,8 +193,11 @@ const IconImage = styled.img`
   margin: 10px;
 `;
 
-const CoverImg = ({ ImageID }: { ImageID: number }) => {
-  const url = `/image/${ImageID}/medium`;
+const CoverImg = ({ ImageID }: { ImageID?: string }) => {
+
+  if (!ImageID) return null;
+
+  const url = `/api/image/${ImageID}/medium`;
 
   // const { isLoading, error, data } = useQuery("shoes", () => getImage(url));
 
