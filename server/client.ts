@@ -1,20 +1,38 @@
 
-import { dgraph, dgraphKey, inProduction } from "../config"
+import { inProduction } from "../config/inProduction";
+import { getDgraphKey } from "../config/dgraphKey";
+import { getDgraph } from "../config/getDgraph";
 
 import {
-  ApolloClient, InMemoryCache, NormalizedCacheObject, ApolloClientOptions
+  ApolloClient,
+  ApolloClientOptions,
+  InMemoryCache,
+  NormalizedCacheObject
 } from "@apollo/client";
 
+let client: ApolloClient<NormalizedCacheObject> | undefined = undefined;
 
-const config: ApolloClientOptions<NormalizedCacheObject> = {
-  uri: `${dgraph}/graphql`,
-  cache: new InMemoryCache(),
-}
+export const getClient = async () => {
 
-if (inProduction && dgraphKey) {
-  config.headers = {
-    "Dg-Auth": dgraphKey
+  if (client) return client;
+
+  const dgraph = getDgraph();
+
+  const config: ApolloClientOptions<NormalizedCacheObject> = {
+    uri: `${dgraph}/graphql`,
+    cache: new InMemoryCache(),
   }
-}
 
-export const client = new ApolloClient(config);
+  const dgraphKey = await getDgraphKey()
+
+  if (inProduction && dgraphKey) {
+    config.headers = {
+      "Dg-Auth": dgraphKey
+    }
+  }
+
+  client = new ApolloClient(config);
+
+  return client
+
+}

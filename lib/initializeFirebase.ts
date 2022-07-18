@@ -1,5 +1,5 @@
 import admin from 'firebase-admin';
-import { inProduction } from '../config';
+import { inProduction } from "../config/inProduction";
 import fs from "fs"
 import path from "path"
 

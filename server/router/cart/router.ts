@@ -1,16 +1,17 @@
 import { t } from "../trpc";
 import { z } from "zod";
-import { methods } from "./methods";
+import { getMethods } from "./methods";
 
 const getCart = async (customerId: string) => {
-  const result = await methods.getActiveCart({ customerId })
+  const { getActiveCart, createActiveCart } = await getMethods()
+  const result = await getActiveCart({ customerId })
   const [cart] = result.getCustomer?.orders ?? []
 
   if (cart) {
     return cart
   }
 
-  const result2 = await methods.createActiveCart({ customerId });
+  const result2 = await createActiveCart({ customerId });
   const [newCart] = result2.addOrder?.order ?? []
 
   if (!newCart) {
@@ -32,9 +33,10 @@ export const cartRouter = t.router({
       quantity: z.number()
     }))
     .mutation(async ({ input, ctx: { user: { uid } } }) => {
+      const { AddShoeToCart } = await getMethods()
       const cart = await getCart(uid);
 
-      const result = await methods.AddShoeToCart({
+      const result = await AddShoeToCart({
         orderId: cart.orderId,
         shoeId: input.shoeId,
         stockId: input.stockId,
@@ -48,9 +50,10 @@ export const cartRouter = t.router({
       address: z.string()
     }))
     .mutation(async ({ input, ctx: { user: { uid } } }) => {
+      const { getOrderDetails, SetOrderShoePrice, processCart } = await getMethods()
       const { orderId } = await getCart(uid);
 
-      const { getOrder: order } = await methods.getOrderDetails({ orderId });
+      const { getOrder: order } = await getOrderDetails({ orderId });
 
       if (!order) {
         throw new Error(`Order ${orderId} not found`);
@@ -85,7 +88,7 @@ export const cartRouter = t.router({
           throw new Error(`no price has been defined for ${shoeId} in order ${orderId}`)
         }
 
-        return methods.SetOrderShoePrice({ orderItemId, price })
+        return SetOrderShoePrice({ orderItemId, price })
       }))
 
       const total = order.items.reduce((total, item) => {
@@ -106,7 +109,7 @@ export const cartRouter = t.router({
         return total
       }, 0);
 
-      const result = await methods.processCart({
+      const result = await processCart({
         orderId,
         address: input.address,
         date: new Date(),

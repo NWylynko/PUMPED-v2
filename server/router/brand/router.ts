@@ -1,6 +1,6 @@
 import { t } from "../trpc";
 import { z } from "zod";
-import { methods } from "./methods";
+import { getMethods } from "./methods";
 
 export const brandRouter = t.router({
   get: t.procedure
@@ -8,7 +8,8 @@ export const brandRouter = t.router({
       brandId: z.string()
     }))
     .query(async ({ input: { brandId } }) => {
-      const result = await methods.getBrand({ brandId });
+      const { getBrand } = await getMethods()
+      const result = await getBrand({ brandId });
       return result.getBrand;
     }),
   create: t.procedure
@@ -17,7 +18,8 @@ export const brandRouter = t.router({
       website: z.string().nullable()
     }))
     .mutation(async ({ input }) => {
-      const result = await methods.createBrand({ brand: input });
+      const { createBrand } = await getMethods()
+      const result = await createBrand({ brand: input });
       return result.addBrand?.brand;
     }),
   update: t.procedure
@@ -29,7 +31,8 @@ export const brandRouter = t.router({
       })
     }))
     .mutation(async ({ input }) => {
-      const result = await methods.updateBrand({ brandId: input.brandId, change: input.new });
+      const { updateBrand } = await getMethods()
+      const result = await updateBrand({ brandId: input.brandId, change: input.new });
       return result.updateBrand?.brand;
     }),
   remove: t.procedure
@@ -37,7 +40,8 @@ export const brandRouter = t.router({
       brandId: z.string()
     }))
     .query(async ({ input }) => {
-      const result = await methods.removeBrand({ brandId: input.brandId });
+      const { removeBrand } = await getMethods()
+      const result = await removeBrand({ brandId: input.brandId });
       return result.deleteBrand;
     }),
 })

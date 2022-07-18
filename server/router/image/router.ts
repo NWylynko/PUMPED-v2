@@ -1,6 +1,6 @@
 import { t } from "../trpc";
 import { z } from "zod";
-import { methods } from "./methods";
+import { getMethods } from "./methods";
 import "../../../lib/initializeFirebase";
 import { getStorage } from 'firebase-admin/storage';
 import axios from "axios"
@@ -23,7 +23,8 @@ const downloadImage = async (url: string) => {
 }
 
 const createImage = async (name: string) => {
-  const { addImage } = await methods.createImage({
+  const { createImage } = await getMethods()
+  const { addImage } = await createImage({
     image: {
       name,
     }
@@ -65,7 +66,8 @@ const getColourName = async (hex: string) => {
 }
 
 async function addColour(shoeId: string, imageId: string, hex: string, colourName: string) {
-  const result = await methods.addColour({ newColour: { shoe: { shoeId }, image: { imageId }, hex, name: colourName } });
+  const { addColour } = await getMethods()
+  const result = await addColour({ newColour: { shoe: { shoeId }, image: { imageId }, hex, name: colourName } });
   const [colour] = result.addColour?.colour ?? []
   if (!colour) throw new Error(`failed to add colour to image`)
   return colour

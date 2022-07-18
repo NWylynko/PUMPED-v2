@@ -1,11 +1,12 @@
 import { t } from "../trpc";
 import { z } from "zod";
-import { methods } from "./methods";
+import { getMethods } from "./methods";
 
 export const customerRouter = t.router({
   get: t.procedure
     .query(async ({ ctx: { user } }) => {
-      const { getCustomer: customer } = await methods.getCustomer({ customerId: user.uid })
+      const { getCustomer, createCustomer } = await getMethods()
+      const { getCustomer: customer } = await getCustomer({ customerId: user.uid })
 
       if (!customer) {
 
@@ -15,7 +16,7 @@ export const customerRouter = t.router({
           throw new Error(`user doesn't have an email`);
         }
 
-        const result = await methods.createCustomer({
+        const result = await createCustomer({
           customer: {
             customerId: user.uid,
             name: user.name,

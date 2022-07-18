@@ -1,7 +1,7 @@
 import { setupTRPC } from '@trpc/next';
 import type { AppRouter } from '../pages/api/trpc/[trpc]';
 import { parse } from 'cookie';
-import { domain } from '../config';
+import { getDomain } from "../config/getDomain";
 
 const t = setupTRPC<AppRouter>({
   // @ts-ignore
@@ -21,6 +21,7 @@ const t = setupTRPC<AppRouter>({
       `s-maxage=1, stale-while-revalidate=${ONE_DAY_SECONDS}`,
     );
 
+    const domain = getDomain();
     const url = `${domain}/api/trpc`
 
     const cookie = ctx?.req?.headers.cookie

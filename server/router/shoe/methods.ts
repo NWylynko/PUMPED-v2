@@ -1,4 +1,4 @@
-import { getMethods } from "../getMethods";
+import { createMethods } from "../createMethods";
 import { getSdk } from "./methods.generated";
 
-export const methods = getMethods(getSdk);
+export const getMethods = async () => createMethods(getSdk);
