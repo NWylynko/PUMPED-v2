@@ -37,8 +37,6 @@ const getConfig = () => {
 
 const config = getConfig()
 
-console.log({ config })
-
 export const domain = config.domain;
 export const dgraph = config.dgraph;
 export const dgraphKey = config.dgraphKey;

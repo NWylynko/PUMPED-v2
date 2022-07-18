@@ -1,9 +1,24 @@
 import admin from 'firebase-admin';
-import serviceAccount from "../service-account.json";
+import { inProduction } from '../config';
+import fs from "fs"
+import path from "path"
 
 if (admin.apps.length === 0) {
-  admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount as any),
-    storageBucket: "pumped-kicks.appspot.com"
-  });
+  if (inProduction) {
+
+    admin.initializeApp({
+      storageBucket: "pumped-kicks.appspot.com"
+    })
+
+  } else {
+
+    const serviceAccountPath = path.join(process.cwd(), "./service-account.json")
+    const serviceAccount = JSON.parse(fs.readFileSync(serviceAccountPath).toString())
+
+    admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount),
+      storageBucket: "pumped-kicks.appspot.com"
+    });
+  }
+
 }
