@@ -77,10 +77,6 @@ mutation processCart($orderId: ID!, $address: String!, $date: DateTime!, $total:
 					coverImage {
 						imageId
 						name
-						colour {
-							name
-							hex
-						}
 					}
 				}
 				price

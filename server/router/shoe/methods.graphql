@@ -17,11 +17,11 @@ query ShoeLightDetails($shoeId: ID!) {
 		coverImage {
 			imageId
 		}
-		images {
-			imageId
+		colours {
 			name
-			colour {
-				hex
+			hex
+			image {
+				imageId
 				name
 			}
 		}
@@ -35,10 +35,6 @@ mutation setCoverImage($shoeId: ID!, $imageId: ID!) {
 			coverImage {
 				imageId
 				name
-				colour {
-					hex
-					name
-				}
 			}
 		}
 	}

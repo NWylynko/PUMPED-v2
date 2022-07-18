@@ -9,7 +9,8 @@
     "generate-types": "graphql-codegen -r ./env.js",
     "generate-types:watch": "nodemon -e graphql --exec yarn generate-types",
     "push-schema": "curl -X POST localhost:8080/admin/schema --data-binary '@schema.graphql'",
-    "validate-schema": "curl -X POST localhost:8080/admin/schema/validate --data-binary '@schema.graphql'"
+    "validate-schema": "curl -X POST localhost:8080/admin/schema/validate --data-binary '@schema.graphql'",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",

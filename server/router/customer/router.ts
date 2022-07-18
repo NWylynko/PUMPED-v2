@@ -20,6 +20,7 @@ export const customerRouter = t.router({
             customerId: user.uid,
             name: user.name,
             email: user.email,
+            picture: user.picture
           }
         })
 

@@ -22,13 +22,10 @@ const downloadImage = async (url: string) => {
   return { image, ext }
 }
 
-const createImage = async (name: string, shoeId: string) => {
+const createImage = async (name: string) => {
   const { addImage } = await methods.createImage({
     image: {
       name,
-      shoe: {
-        shoeId
-      }
     }
   })
 
@@ -84,7 +81,7 @@ export const imageRouter = t.router({
     .mutation(async ({ input: { shoeId, name, url } }) => {
 
       const { image, ext } = await downloadImage(url);
-      const { imageId } = await createImage(name, shoeId);
+      const { imageId } = await createImage(name);
       await uploadImage(imageId, ext, image)
       const hex = await getProminentColour(ext, image)
       const colourName = await getColourName(hex);

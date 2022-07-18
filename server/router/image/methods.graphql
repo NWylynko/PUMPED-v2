@@ -2,9 +2,7 @@ mutation createImage($image: AddImageInput!) {
 	addImage(input: [$image]) {
 		image {
 			imageId
-			shoe {
-				shoeId
-			}
+			name
 		}
 	}
 }
