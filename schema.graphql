@@ -88,7 +88,6 @@ type Shoe {
   tags: [Tag] @hasInverse(field: shoe)
   reviews: [Review] @hasInverse(field: shoe)
   stock: [Stock] @hasInverse(field: shoe)
-  colours: [Colour] @hasInverse(field: shoe)
 }
 
 type Stock {

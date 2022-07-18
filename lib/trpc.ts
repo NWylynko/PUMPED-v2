@@ -1,7 +1,7 @@
 import { setupTRPC } from '@trpc/next';
 import type { AppRouter } from '../pages/api/trpc/[trpc]';
 import { parse } from 'cookie';
-
+import { domain } from '../config';
 
 const t = setupTRPC<AppRouter>({
   // @ts-ignore
@@ -21,9 +21,7 @@ const t = setupTRPC<AppRouter>({
       `s-maxage=1, stale-while-revalidate=${ONE_DAY_SECONDS}`,
     );
 
-    const url = process.env.NODE_ENV === "production"
-      ? `http://localhost:3000/api/trpc` // need domain here (either directly or from env)
-      : 'http://localhost:3000/api/trpc';
+    const url = `${domain}/api/trpc`
 
     const cookie = ctx?.req?.headers.cookie
     let jwt;
