@@ -6,32 +6,36 @@ export const customerRouter = t.router({
   get: t.procedure
     .query(async ({ ctx: { user } }) => {
       const { getCustomer, createCustomer } = await getMethods()
-      const { getCustomer: customer } = await getCustomer({ customerId: user.uid })
+      const response = await getCustomer({ customerId: user.uid })
 
-      if (!customer) {
+      console.log(response)
 
-        // upload picture url to get id to pass in here
+      const { getCustomer: customer } = response;
 
-        if (!user.email) {
-          throw new Error(`user doesn't have an email`);
-        }
+      // if (!customer) {
 
-        const result = await createCustomer({
-          customer: {
-            customerId: user.uid,
-            name: user.name,
-            email: user.email,
-            picture: user.picture
-          }
-        })
+      //   // upload picture url to get id to pass in here
 
-        if (result.addCustomer?.customer) {
-          return result.addCustomer?.customer[0]
-        }
+      //   if (!user.email) {
+      //     throw new Error(`user doesn't have an email`);
+      //   }
 
-        throw new Error(`failed to create customer`)
+      //   const result = await createCustomer({
+      //     customer: {
+      //       customerId: user.uid,
+      //       name: user.name,
+      //       email: user.email,
+      //       picture: user.picture
+      //     }
+      //   })
 
-      }
+      //   if (result.addCustomer?.customer) {
+      //     return result.addCustomer?.customer[0]
+      //   }
+
+      //   throw new Error(`failed to create customer`)
+
+      // }
 
       return customer;
     }),
