@@ -6,7 +6,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate-types": "graphql-codegen",
+    "generate-types": "graphql-codegen -r ./env.js",
     "generate-types:watch": "nodemon -e graphql --exec yarn generate-types",
     "push-schema": "curl -X POST localhost:8080/admin/schema --data-binary '@schema.graphql'",
     "validate-schema": "curl -X POST localhost:8080/admin/schema/validate --data-binary '@schema.graphql'"
@@ -42,6 +42,7 @@
     "@graphql-codegen/typescript": "^2.7.1",
     "@graphql-codegen/typescript-generic-sdk": "^2.4.1",
     "@graphql-codegen/typescript-operations": "^2.5.1",
+    "@next/env": "^12.2.2",
     "@types/cookie": "^0.5.1",
     "@types/get-image-colors": "^4.0.1",
     "@types/node": "^18.0.5",
