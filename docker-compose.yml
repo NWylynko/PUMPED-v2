@@ -41,4 +41,4 @@ services:
       - "8081:8081"
       - "9081:9081"
     restart: on-failure
-    command: dgraph alpha --my=alpha2:7081 --zero=zero:5080 -o=1
+    command: dgraph alpha --my=alpha2:7081 --zero=zero:5080 -o=1 --security "whitelist=0.0.0.0/0"
