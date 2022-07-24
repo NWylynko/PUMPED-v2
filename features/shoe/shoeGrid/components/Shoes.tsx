@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 
-import { ShoeWithColours } from "../PUMPED-api/api/shoe/types";
-import { ShoeColour } from "../PUMPED-api/api/colour/types";
-import styled from "styled-components";
 import Link from "next/link";
-import { Stars } from "../components/Stars";
-import { StyledPriceText, Title } from "../pages/shoe/[id]";
-import { trpc } from "../lib/trpc";
-import { Loading } from "./loading";
+import styled from "styled-components";
+import { Loading } from "@/components/loading";
+import { Stars } from "@/components/Stars";
+import { StyledPriceText, Title } from "../../../../pages/shoe/[id]";
+import type { ShoeColour } from "../../../../PUMPED-api/api/colour/types";
+import { useShoes } from "../lib/useShoes";
+import { useShoeDetails } from "../lib/useShoeDetails";
 
 export const Shoes = () => {
 
-  const { data } = trpc.shoe.getAll.useQuery();
+  const { data } = useShoes();
 
   if (!data) {
     return <Loading />
@@ -58,7 +58,7 @@ interface ShoeProps {
 
 const Shoe = ({ shoeId }: ShoeProps) => {
 
-  const { data } = trpc.shoe.getLightDetails.useQuery({ shoeId });
+  const { data } = useShoeDetails({ shoeId });
 
   console.log('shoe', data)
 

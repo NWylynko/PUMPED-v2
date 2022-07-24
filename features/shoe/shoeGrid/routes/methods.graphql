@@ -1,0 +1,42 @@
+query ShoesJustIds {
+	queryShoe {
+		shoeId
+	}
+}
+
+query ShoeLightDetails($shoeId: ID!) {
+	getShoe(shoeId: $shoeId) {
+		shoeId
+		name
+		brand {
+			brandId
+			name
+		}
+		stars
+		price
+		coverImage {
+			imageId
+		}
+		colours {
+			name
+			hex
+			image {
+				imageId
+				name
+			}
+		}
+	}
+}
+
+query GetShoeColours($shoeId: ID!) {
+	getShoe(shoeId: $shoeId) {
+		colours {
+			colourId
+			name
+			hex
+			image {
+				imageId
+			}
+		}
+	}
+}

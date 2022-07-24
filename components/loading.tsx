@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-export const Loading = () => {
+export const Loading = (): JSX.Element => {
 
   const [show, setShow] = useState(false)
 
@@ -8,16 +8,16 @@ export const Loading = () => {
 
     const timeout = setTimeout(() => {
       setShow(true)
-    }, 500)
+    }, 300)
 
     return () => {
       clearTimeout(timeout)
     }
   }, [])
 
-  return (
-    <div>
-      {show && <p>Loading...</p>}
-    </div>
-  )
+  if (show) {
+    return <span>Loading...</span>
+  }
+
+  return <></>
 }

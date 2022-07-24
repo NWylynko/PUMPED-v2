@@ -9,7 +9,7 @@ generates:
   server/types/graphql.ts:
     plugins:
       - typescript
-  server/:
+  features/:
     preset: near-operation-file
     presetConfig:
       baseTypesPath: types/graphql
