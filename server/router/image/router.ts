@@ -1,4 +1,4 @@
-import { t } from "../trpc";
+import { t } from "../../trpc";
 import { z } from "zod";
 import { getMethods } from "./methods";
 import "../../../lib/initializeFirebase";

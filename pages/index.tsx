@@ -1,1 +1,1 @@
-export { HomePage as default } from "@/features/shoe/shoeGrid";
+export { HomePage as default } from "@/features/shoe/shoeGrid/pages/HomePage";

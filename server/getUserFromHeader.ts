@@ -9,11 +9,13 @@ export async function getUserFromHeader(req: NextApiRequest) {
 
   const jwt = req.cookies.jwt ?? req.headers['x-jwt'] as string | undefined;
 
-  if (!jwt) {
+  const token = jwt === 'undefined' ? undefined : jwt
+
+  if (!token) {
     throw new TRPCError({ code: "UNAUTHORIZED" })
   }
 
-  const user = await auth.verifyIdToken(jwt)
+  const user = await auth.verifyIdToken(token)
 
   return user;
 }

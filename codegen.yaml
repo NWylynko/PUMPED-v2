@@ -3,17 +3,23 @@ overwrite: true
 schema: ${DGRAPH_API}/graphql
 
 documents:
-  - "server/**/*.graphql"
+  - "features/**/*.graphql"
 
 generates:
-  server/types/graphql.ts:
+  types/graphql.ts:
     plugins:
       - typescript
   features/:
     preset: near-operation-file
     presetConfig:
-      baseTypesPath: types/graphql
+      baseTypesPath: "~@/types/graphql"
       extension: .generated.ts
     plugins:
       - typescript-operations
       - typescript-generic-sdk
+      - add:
+          placement: "prepend"
+          content: 'import { createMethods } from "@/lib/createMethods";'
+      - add:
+          placement: "append"
+          content: "export const getMethods = () => createMethods(getSdk);"

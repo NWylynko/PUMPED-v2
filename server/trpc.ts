@@ -1,4 +1,4 @@
 import { initTRPC } from '@trpc/server';
-import { Context, createContext } from '../context';
+import { Context } from './context';
 
 export const t = initTRPC<{ ctx: Context }>()();

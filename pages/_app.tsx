@@ -52,9 +52,9 @@ const GlobalStyle = createGlobalStyle`
 
 const MyApp: AppType = ({ Component, pageProps }) => {
 
-  const { loading, loggedIn } = useFirebase();
+  const { loading, user } = useFirebase();
 
-  if (!loading && !loggedIn) {
+  if (!loading && !user) {
     return <Login />
   }
 

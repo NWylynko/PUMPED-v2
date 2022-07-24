@@ -10,11 +10,11 @@ import {
   NormalizedCacheObject
 } from "@apollo/client";
 
-let client: ApolloClient<NormalizedCacheObject> | undefined = undefined;
+let dgraphClient: ApolloClient<NormalizedCacheObject> | undefined = undefined;
 
-export const getClient = async () => {
+export const getDgraphClient = async () => {
 
-  if (client) return client;
+  if (dgraphClient) return dgraphClient;
 
   const dgraph = getDgraph();
 
@@ -31,8 +31,8 @@ export const getClient = async () => {
     }
   }
 
-  client = new ApolloClient(config);
+  dgraphClient = new ApolloClient(config);
 
-  return client
+  return dgraphClient
 
 }

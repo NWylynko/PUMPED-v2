@@ -1,16 +1,20 @@
-query ShoesJustIds {
+query shoeIds {
 	queryShoe {
 		shoeId
 	}
 }
 
-query ShoeLightDetails($shoeId: ID!) {
+query shoeDetails($shoeId: ID!) {
 	getShoe(shoeId: $shoeId) {
 		shoeId
 		name
 		brand {
 			brandId
 			name
+			icon {
+				imageId
+				name
+			}
 		}
 		stars
 		price
@@ -28,15 +32,20 @@ query ShoeLightDetails($shoeId: ID!) {
 	}
 }
 
-query GetShoeColours($shoeId: ID!) {
+query shoeColourIds($shoeId: ID!) {
 	getShoe(shoeId: $shoeId) {
 		colours {
 			colourId
-			name
-			hex
-			image {
-				imageId
-			}
+		}
+	}
+}
+
+query shoeColour($colourId: ID!) {
+	getColour(colourId: $colourId) {
+		name
+		hex
+		image {
+			imageId
 		}
 	}
 }

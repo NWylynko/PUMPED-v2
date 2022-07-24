@@ -1,13 +1,7 @@
-import React from 'react';
-import { Shoes } from '../components/Shoes'
-import { trpc } from "@/lib/trpc";
 import { NextSeo } from 'next-seo';
+import { Shoes } from '../components/Shoes';
 
 export function HomePage() {
-
-  const { data: customer } = trpc.customer.get.useQuery();
-
-  console.log(customer)
 
   return (
     <>
