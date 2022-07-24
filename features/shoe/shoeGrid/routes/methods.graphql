@@ -4,8 +4,8 @@ query shoeIds {
 	}
 }
 
-query shoeDetails($shoeId: ID!) {
-	getShoe(shoeId: $shoeId) {
+query shoeDetails($shoeIds: [ID!]!) {
+	queryShoe(filter: { shoeId: $shoeIds }) {
 		shoeId
 		name
 		brand {
@@ -32,16 +32,16 @@ query shoeDetails($shoeId: ID!) {
 	}
 }
 
-query shoeColourIds($shoeId: ID!) {
-	getShoe(shoeId: $shoeId) {
+query shoeColourIds($shoeIds: [ID!]!) {
+	queryShoe(filter: { shoeId: $shoeIds }) {
 		colours {
 			colourId
 		}
 	}
 }
 
-query shoeColour($colourId: ID!) {
-	getColour(colourId: $colourId) {
+query shoeColour($colourIds: [ID!]!) {
+	queryColour(filter: { colourId: $colourIds }) {
 		name
 		hex
 		image {

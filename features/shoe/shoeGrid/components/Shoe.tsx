@@ -16,7 +16,7 @@ export const Shoe = ({ shoeId }: ShoeProps) => {
 
   const { data } = useShoeDetails({ shoeId });
 
-  console.log('shoe', data);
+  // console.log('shoe', data);
 
   const [imageID, setImageID] = useState<string | undefined>(data?.coverImage.imageId);
 
@@ -27,10 +27,10 @@ export const Shoe = ({ shoeId }: ShoeProps) => {
     <Link href={encodeURI(`/shoe/${shoeId}`)} passHref>
       <StyledA>
         <ShoeContainer>
-          <CoverImg ImageID={imageID} />
+          {/* <CoverImg ImageID={imageID} /> */}
           <ShoeText>
             <Horizontal>
-              <BrandIcon imageID={data.brand.icon?.imageId} />
+              {/* <BrandIcon imageID={data.brand.icon?.imageId} /> */}
               <StyledPriceText style={{ color: "black" }}>{data.brand.name}</StyledPriceText>
               <Stars n={data?.stars ?? 0} />
               <StyledPriceText style={{ color: "black" }}>${data?.price}</StyledPriceText>

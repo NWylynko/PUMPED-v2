@@ -22,4 +22,4 @@ generates:
           content: 'import { createMethods } from "@/lib/createMethods";'
       - add:
           placement: "append"
-          content: "export const getMethods = () => createMethods(getSdk);"
+          content: "export const methods = createMethods(getSdk);"

@@ -1,39 +1,56 @@
+import { createLoader } from "@/lib/createLoader";
 import { t } from "@/server/trpc";
 import { z } from "zod";
-import { getMethods } from "./methods.generated";
+import { methods } from "./methods.generated";
+
+// by using a loader the requests are more optimised making requests faster
+const loaders = {
+  getShoeDetails: createLoader(methods.shoeDetails, "shoeIds", "queryShoe"),
+  getShoeColourIds: createLoader(methods.shoeColourIds, "shoeIds", "queryShoe"),
+  getShoeColour: createLoader(methods.shoeColour, "colourIds", "queryColour")
+}
 
 export const router = t.router({
+
+
+
   getShoeIds: t.procedure
     .query(async () => {
-      const { shoeIds } = await getMethods()
-      const result = await shoeIds();
+      const result = await methods.shoeIds();
       return result.queryShoe;
     }),
+
+
+
   getShoeDetails: t.procedure
     .input(z.object({
       shoeId: z.string()
     }))
     .query(async ({ input }) => {
-      const { shoeDetails } = await getMethods()
-      const result = await shoeDetails({ shoeId: input.shoeId });
-      return result.getShoe
+      return loaders.getShoeDetails.load({ shoeIds: input.shoeId });
     }),
+
+
+
   getShoeColourIds: t.procedure
     .input(z.object({
       shoeId: z.string()
     }))
     .query(async ({ input }) => {
-      const { shoeColourIds } = await getMethods();
-      const result = await shoeColourIds({ shoeId: input.shoeId });
-      return result.getShoe?.colours
+      const result = await loaders.getShoeColourIds.load({ shoeIds: input.shoeId })
+      return result?.colours
     }),
+
+
+
   getShoeColour: t.procedure
     .input(z.object({
       colourId: z.string()
     }))
     .query(async ({ input }) => {
-      const { shoeColour } = await getMethods();
-      const result = await shoeColour({ colourId: input.colourId });
-      return result.getColour
+      return loaders.getShoeColour.load({ colourIds: input.colourId })
     })
+
+
+
 });

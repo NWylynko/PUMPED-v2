@@ -12,7 +12,7 @@ import {
 
 let dgraphClient: ApolloClient<NormalizedCacheObject> | undefined = undefined;
 
-export const getDgraphClient = async () => {
+export const getDgraphClient = () => {
 
   if (dgraphClient) return dgraphClient;
 
@@ -23,7 +23,7 @@ export const getDgraphClient = async () => {
     cache: new InMemoryCache(),
   }
 
-  const dgraphKey = await getDgraphKey()
+  const dgraphKey = getDgraphKey()
 
   if (inProduction && dgraphKey) {
     config.headers = {

@@ -1,3 +1,4 @@
+// shamelessly yonked and modified from https://gist.github.com/akozhemiakin/731b0c1e99eb89b01f80f08f9146b6b6
 
 import { ApolloClient, QueryOptions, MutationOptions } from '@apollo/client';
 import { DocumentNode } from 'graphql';

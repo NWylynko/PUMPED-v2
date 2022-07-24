@@ -1,24 +1,27 @@
 import { inProduction } from "./inProduction";
 import { SecretManagerServiceClient } from '@google-cloud/secret-manager';
 
-export let client: SecretManagerServiceClient | undefined = undefined;
-
-if (inProduction) {
-  client = new SecretManagerServiceClient();
-}
-
 let dgraphKey: string | undefined = undefined;
 
-export const getDgraphKey = async (): Promise<string | undefined> => {
+export const getDgraphKey = (): string | undefined => {
   if (!inProduction)
     return undefined;
 
   if (dgraphKey)
     return dgraphKey;
 
-  if (!client) {
-    throw new Error(`secret manager not instantiated`);
-  }
+  throw new Error(`the dgraph api key has not loaded yet fuck`);
+};
+
+const fetchDgraphKey = async () => {
+  if (!inProduction)
+    return;
+
+
+  if (dgraphKey)
+    return;
+
+  const client = new SecretManagerServiceClient();
 
   const [version] = await client.accessSecretVersion({
     name: "projects/545027604759/secrets/DGRAPH_API_KEY/versions/1",
@@ -28,5 +31,9 @@ export const getDgraphKey = async (): Promise<string | undefined> => {
 
   dgraphKey = payload;
 
-  return payload;
-};
+  return;
+}
+
+// a dirty ugly hideous side-effect
+// but I don't know a better solution arghhh
+fetchDgraphKey();
