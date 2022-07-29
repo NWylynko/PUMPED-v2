@@ -79,6 +79,7 @@ type Shoe {
   price: Int!
   releaseDate: DateTime!
   stars: Int
+  public: Boolean! @search
   brand: Brand!
   style: Style!
   section: Section!

@@ -1,0 +1,7 @@
+mutation addNewShoe($shoes: [AddShoeInput!]!) {
+	addShoe(input: $shoes) {
+		shoe {
+			shoeId
+		}
+	}
+}

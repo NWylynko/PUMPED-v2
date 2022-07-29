@@ -1,11 +1,11 @@
 query shoeIds {
-	queryShoe {
+	queryShoe(filter: { public: true }) {
 		shoeId
 	}
 }
 
 query shoeDetails($shoeIds: [ID!]!) {
-	queryShoe(filter: { shoeId: $shoeIds }) {
+	queryShoe(filter: { shoeId: $shoeIds, public: true }) {
 		shoeId
 		name
 		brand {
@@ -33,7 +33,7 @@ query shoeDetails($shoeIds: [ID!]!) {
 }
 
 query shoeColourIds($shoeIds: [ID!]!) {
-	queryShoe(filter: { shoeId: $shoeIds }) {
+	queryShoe(filter: { shoeId: $shoeIds, public: true }) {
 		colours {
 			colourId
 		}

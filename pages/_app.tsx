@@ -58,9 +58,11 @@ const MyApp: AppType = ({ Component, pageProps }) => {
     return <Login />
   }
 
+  // @ts-ignore
+  const navBarLarge = !Component.smallNavBar as boolean
   return (
     <>
-      <Navbar />
+      <Navbar large={navBarLarge} />
       <Component {...pageProps} />
       <ReactQueryDevtools />
     </>

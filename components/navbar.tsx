@@ -4,7 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 import bannerImg from "../public/banner.png"
 
-export default function Navbar() {
+interface NavBarProps {
+  large?: boolean;
+}
+
+export default function Navbar({ large = true }: NavBarProps) {
   return (
     <Container>
       <StyledHeader>
@@ -12,7 +16,7 @@ export default function Navbar() {
         <StyledLink href="/" passHref>
           <A>
             <PUMPEDContainer>
-              <PUMPED src={bannerImg} height="300" width="600" />
+              <PUMPED src={bannerImg} height={large ? "300" : "100"} width={large ? "600" : "200"} />
             </PUMPEDContainer>
           </A>
         </StyledLink>

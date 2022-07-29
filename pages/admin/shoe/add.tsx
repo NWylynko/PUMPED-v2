@@ -1,0 +1,1 @@
+export { AddShoePage as default } from "@/features/shoe/addShoe/pages/AddShoePage";
