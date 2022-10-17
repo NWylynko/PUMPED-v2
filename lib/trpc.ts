@@ -22,17 +22,15 @@ export const trpc = createTRPCNext<AppRouter>({
     }
     // during SSR below
 
-    // // optional: use SSG-caching for each rendered page (see caching section for more details)
-    // const ONE_DAY_SECONDS = 60 * 60 * 24;
-    // ctx?.res?.setHeader(
-    //   'Cache-Control',
-    //   `s-maxage=1, stale-while-revalidate=${ONE_DAY_SECONDS}`,
-    // );
+    // optional: use SSG-caching for each rendered page (see caching section for more details)
+    const ONE_DAY_SECONDS = 60 * 60 * 24;
+    ctx?.res?.setHeader(
+      'Cache-Control',
+      `s-maxage=1, stale-while-revalidate=${ONE_DAY_SECONDS}`,
+    );
 
     const domain = getDomain();
     const url = `${domain}/api/trpc`
-
-    console.log({ url })
 
     const cookie = ctx?.req?.headers.cookie
     let jwt: string | undefined;

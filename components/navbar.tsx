@@ -14,34 +14,26 @@ export default function Navbar({ large = true, hideNavItems = false }: NavBarPro
     <Container>
       <StyledHeader>
         <div></div>
-        <StyledLink href="/" passHref>
-          <A>
+        <StyledLink href="/">
             <PUMPEDContainer>
               <PUMPED src={bannerImg} height={large ? "300" : "100"} width={large ? "600" : "200"} />
             </PUMPEDContainer>
-          </A>
         </StyledLink>
         {hideNavItems ? null : (
           <List>
             <Item>
-              <Link href={"/"} passHref>
-                <A>
+              <Link href={"/"}>
                   <h3>Home</h3>
-                </A>
               </Link>
             </Item>
             <Item>
-              <Link href={"/cart"} passHref>
-                <A>
+              <Link href={"/cart"}>
                   <h3>Cart</h3>
-                </A>
               </Link>
             </Item>
             <Item>
-              <Link href={"/wishlist"} passHref>
-                <A>
+              <Link href={"/wishlist"}>
                   <h3>Wishlist</h3>
-                </A>
               </Link>
             </Item>
           </List>
@@ -85,13 +77,6 @@ const Item = styled.li`
   padding: 3px;
 `;
 
-const A = styled.a`
-  text-decoration: none;
-
-  margin: 0;
-  padding: 0;
-`;
-
 const PUMPED = styled(Image)`
   max-height: 300px;
 `;
@@ -116,4 +101,7 @@ const PUMPEDContainer = styled.div`
 
 const StyledLink = styled(Link)`
   text-decoration: none;
+
+  margin: 0;
+  padding: 0;
 `;

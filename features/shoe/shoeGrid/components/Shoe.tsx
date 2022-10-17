@@ -23,8 +23,7 @@ export const Shoe = ({ shoeId }: ShoeProps) => {
   if (!data) return null;
 
   return (
-    <Link href={encodeURI(`/shoe/${shoeId}`)} passHref>
-      <StyledA>
+    <StyledLink href={encodeURI(`/shoe/${shoeId}`)}>
         <ShoeContainer>
           {/* <CoverImg ImageID={imageID} /> */}
           <ShoeText>
@@ -50,12 +49,11 @@ export const Shoe = ({ shoeId }: ShoeProps) => {
             </div>
           </ShoeText>
         </ShoeContainer>
-      </StyledA>
-    </Link>
+    </StyledLink>
   );
 };
 
-const StyledA = styled.a`
+const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 

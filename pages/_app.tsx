@@ -20,7 +20,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: #141111;
   }
 
-  p, b, h2, h3, h4, h5, h6, a, li, button, label, select, option {
+  p, b, h2, h3, h4, h5, h6, a, li, button, label, select, option, span {
     margin: 0;
     color: rgb(241, 239, 239);
 
@@ -46,6 +46,10 @@ const GlobalStyle = createGlobalStyle`
 
   button:hover {
     background-color: #f36868;
+  }
+
+  a {
+    text-decoration: none;
   }
 `;
 
