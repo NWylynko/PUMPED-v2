@@ -39,6 +39,7 @@ dgraph/
 # codegen
 types/graphql.ts
 *.generated.ts
+generated/
 
 # firebase
 service-account.json

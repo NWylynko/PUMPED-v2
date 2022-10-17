@@ -47,7 +47,7 @@ export function AddShoePage() {
             <Input {...register("releaseDate")} />
 
             <Label>Public:</Label>
-            <Input {...register("public")} type="checkbox" />
+            <StyledCheckbox {...register("public")} type="checkbox" />
 
             <Label>Brand:</Label>
             <Select options={brandOptions} isSearchable />
@@ -75,6 +75,7 @@ const Form = styled.form`
   display: grid;
   grid-template-columns: auto auto;
   align-items: center;
+  gap:16px;
 `;
 
 const Label = styled.label``;
@@ -82,5 +83,7 @@ const Label = styled.label``;
 const Input = styled.input`
   min-width: 200px;
 `;
+
+const StyledCheckbox = styled(Input)``;
 
 const Button = styled.button``;

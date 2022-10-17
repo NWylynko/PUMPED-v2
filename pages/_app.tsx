@@ -3,7 +3,7 @@ import { withTRPC } from "../lib/trpc";
 
 import Navbar from "../components/navbar";
 
-import { ReactQueryDevtools } from "react-query/devtools";
+// import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 import { FirebaseProvider, useFirebase } from "@bluesky-digital-labs/next-firebase-auth";
 import { Login } from "../components/Login";
@@ -31,8 +31,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   button, input {
-    margin: 20px;
-    padding: 10px;
+    margin: 8px;
+    padding: 12px;
 
     min-width: 150px;
     max-height: 75px;
@@ -65,7 +65,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
     <>
       <Navbar large={navBarLarge} hideNavItems={hideNavItems} />
       <Component {...pageProps} />
-      <ReactQueryDevtools />
+      {/* <ReactQueryDevtools /> */}
     </>
   );
 };

@@ -1,11 +1,8 @@
-import { inferAsyncReturnType } from '@trpc/server';
-import * as trpcNext from '@trpc/server/adapters/next';
-import { getUserFromHeader } from './getUserFromHeader';
+import { inferAsyncReturnType } from "@trpc/server";
+import * as trpcNext from "@trpc/server/adapters/next";
+import { getUserFromHeader } from "./getUserFromHeader";
 
-export async function createContext({
-  req,
-  res,
-}: trpcNext.CreateNextContextOptions) {
+export async function createContext({ req, res }: trpcNext.CreateNextContextOptions) {
   // Create your context based on the request object
   // Will be available as `ctx` in all your resolvers
 
