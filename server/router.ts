@@ -7,6 +7,7 @@ import { imageRouter } from './router/image';
 import { shoeRouter } from './router/shoe/router';
 
 import { router as shoeGridRouter } from "@/features/shoe/shoeGrid/routes/router"
+import { router as addShoeRouter } from "@/features/shoe/addShoe/routes/router"
 
 export const appRouter = t.router({
   brand: brandRouter,
@@ -14,7 +15,9 @@ export const appRouter = t.router({
   customer: customerRouter,
   image: imageRouter,
   shoe: shoeRouter,
-  shoeGrid: shoeGridRouter
+  shoeGrid: shoeGridRouter,
+  addShoe: addShoeRouter,
+  
 })
 
 // export type definition of API

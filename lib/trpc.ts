@@ -47,3 +47,4 @@ const t = setupTRPC<AppRouter>({
 
 export const withTRPC = t.withTRPC
 export const trpc = t.proxy;
+export type { AppRouter };

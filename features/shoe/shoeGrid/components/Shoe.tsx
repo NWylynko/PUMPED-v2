@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Stars } from "@/components/Stars";
 import Link from "next/link";
 import styled from "styled-components";
-import { StyledPriceText, Title } from "../../../../pages/shoe/[id]";
+import { StyledPriceText } from "../../../../pages/shoe/[id]";
+import { Title } from "../../../../components/Title";
 import { useShoeDetails } from "../lib/hooks";
 import { CoverImg } from "./CoverImg";
 import { BrandIcon as BrandIcon } from "./BrandIcon";
@@ -13,15 +14,13 @@ interface ShoeProps {
 }
 
 export const Shoe = ({ shoeId }: ShoeProps) => {
-
   const { data } = useShoeDetails({ shoeId });
 
   // console.log('shoe', data);
 
   const [imageID, setImageID] = useState<string | undefined>(data?.coverImage.imageId);
 
-  if (!data)
-    return null;
+  if (!data) return null;
 
   return (
     <Link href={encodeURI(`/shoe/${shoeId}`)} passHref>

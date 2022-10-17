@@ -4,7 +4,10 @@ query getBrand($brandId: ID!) {
 		brandId
 		name
 		website
-		icon
+		icon {
+			imageId
+			name
+		}
 	}
 }
 

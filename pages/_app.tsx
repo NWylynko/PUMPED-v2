@@ -1,16 +1,15 @@
-
-import { AppType } from 'next/dist/shared/lib/utils';
+import { AppType } from "next/dist/shared/lib/utils";
 import { withTRPC } from "../lib/trpc";
 
 import Navbar from "../components/navbar";
 
-import { ReactQueryDevtools } from 'react-query/devtools';
+import { ReactQueryDevtools } from "react-query/devtools";
 
 import { FirebaseProvider, useFirebase } from "@bluesky-digital-labs/next-firebase-auth";
-import { Login } from '../components/Login';
+import { Login } from "../components/Login";
 
-import { createGlobalStyle, ThemeProvider } from 'styled-components'
-import { NextSeo } from 'next-seo';
+import { createGlobalStyle, ThemeProvider } from "styled-components";
+import { NextSeo } from "next-seo";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -48,32 +47,34 @@ const GlobalStyle = createGlobalStyle`
   button:hover {
     background-color: #f36868;
   }
-`
+`;
 
 const MyApp: AppType = ({ Component, pageProps }) => {
-
   const { loading, user } = useFirebase();
 
   if (!loading && !user) {
-    return <Login />
+    return <Login />;
   }
 
   // @ts-ignore
-  const navBarLarge = !Component.smallNavBar as boolean
+  const navBarLarge = !Component.smallNavBar as boolean;
+  // @ts-ignore
+  const hideNavItems = Component.hideNavItems as boolean;
+
   return (
     <>
-      <Navbar large={navBarLarge} />
+      <Navbar large={navBarLarge} hideNavItems={hideNavItems} />
       <Component {...pageProps} />
       <ReactQueryDevtools />
     </>
   );
-}
+};
 
 const App: AppType = (props) => {
   return (
     <>
       <GlobalStyle />
-      <NextSeo titleTemplate='%s - PUMPED 👟' />
+      <NextSeo titleTemplate="%s - PUMPED 👟" />
       <ThemeProvider theme={{}}>
         <FirebaseProvider>
           <MyApp {...props} />
@@ -81,6 +82,6 @@ const App: AppType = (props) => {
       </ThemeProvider>
     </>
   );
-}
+};
 
 export default withTRPC(App);

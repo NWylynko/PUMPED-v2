@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useState } from "react";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 import { addToCart, getShoe, addToWishlist, removeFromWishlist, isInWishlist } from "../../lib/api";
 import type { ShoeWithDetails as ShoeProps } from "../../PUMPED-api/api/shoe/types";
 import styled from "styled-components";
@@ -13,10 +13,11 @@ import { Loading } from "../../components/loading";
 import { TiTickOutline } from "@react-icons/all-files/ti/TiTickOutline";
 import { TiTimesOutline } from "@react-icons/all-files/ti/TiTimesOutline";
 import { trpc } from "../../lib/trpc";
+import { Title } from "../../components/Title";
 
 function ShoePage() {
   const router = useRouter();
-  const { id } = router.query
+  const { id } = router.query;
 
   // const { isLoading, error, data } = useQuery(`shoe ${id}`, () => getShoe(id));
 
@@ -108,32 +109,30 @@ interface WishlistButtonProps {
 }
 
 const WishlistButton = ({ ShoeID }: WishlistButtonProps) => {
-
-  const [fav, setFav] = useState(false)
+  const [fav, setFav] = useState(false);
 
   useEffect(() => {
     const run = async () => {
-      const isFav = await isInWishlist(ShoeID)
-      setFav(isFav)
-    }
-    run()
-  }, [ShoeID])
+      const isFav = await isInWishlist(ShoeID);
+      setFav(isFav);
+    };
+    run();
+  }, [ShoeID]);
 
   return (
-    <button style={{ minWidth: 75 }} onClick={() => {
-      if (!fav) {
-        addToWishlist(ShoeID)
-        setFav(true)
-      } else {
-        removeFromWishlist(ShoeID)
-        setFav(false)
-      }
-    }}>
-      {fav ? (
-        <AiFillStar color="white" size={32} />
-      ) : (
-        <AiOutlineStar color="white" size={32} />
-      )}
+    <button
+      style={{ minWidth: 75 }}
+      onClick={() => {
+        if (!fav) {
+          addToWishlist(ShoeID);
+          setFav(true);
+        } else {
+          removeFromWishlist(ShoeID);
+          setFav(false);
+        }
+      }}
+    >
+      {fav ? <AiFillStar color="white" size={32} /> : <AiOutlineStar color="white" size={32} />}
     </button>
   );
 };
@@ -214,13 +213,6 @@ const IconImage = styled.img`
   margin: 10px;
   padding: 10px;
   filter: invert(1);
-`;
-
-export const Title = styled.h2`
-  margin: 10px;
-  padding: 10px;
-
-  font-family: "Fugaz One", cursive;
 `;
 
 export const StyledPriceText = styled.h3`

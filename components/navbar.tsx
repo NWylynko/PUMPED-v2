@@ -2,13 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
-import bannerImg from "../public/banner.png"
+import bannerImg from "../public/banner.png";
 
 interface NavBarProps {
   large?: boolean;
+  hideNavItems?: boolean;
 }
 
-export default function Navbar({ large = true }: NavBarProps) {
+export default function Navbar({ large = true, hideNavItems = false }: NavBarProps) {
   return (
     <Container>
       <StyledHeader>
@@ -20,29 +21,31 @@ export default function Navbar({ large = true }: NavBarProps) {
             </PUMPEDContainer>
           </A>
         </StyledLink>
-        <List>
-          <Item>
-            <Link href={"/"} passHref>
-              <A>
-                <h3>Home</h3>
-              </A>
-            </Link>
-          </Item>
-          <Item>
-            <Link href={"/cart"} passHref>
-              <A>
-                <h3>Cart</h3>
-              </A>
-            </Link>
-          </Item>
-          <Item>
-            <Link href={"/wishlist"} passHref>
-              <A>
-                <h3>Wishlist</h3>
-              </A>
-            </Link>
-          </Item>
-        </List>
+        {hideNavItems ? null : (
+          <List>
+            <Item>
+              <Link href={"/"} passHref>
+                <A>
+                  <h3>Home</h3>
+                </A>
+              </Link>
+            </Item>
+            <Item>
+              <Link href={"/cart"} passHref>
+                <A>
+                  <h3>Cart</h3>
+                </A>
+              </Link>
+            </Item>
+            <Item>
+              <Link href={"/wishlist"} passHref>
+                <A>
+                  <h3>Wishlist</h3>
+                </A>
+              </Link>
+            </Item>
+          </List>
+        )}
       </StyledHeader>
     </Container>
   );

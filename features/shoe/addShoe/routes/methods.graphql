@@ -5,3 +5,27 @@ mutation addNewShoe($shoes: [AddShoeInput!]!) {
 		}
 	}
 }
+
+# query getBrands($searchTerm: String!) {
+# 	queryBrand(filter: { name: { anyofterms: $searchTerm } }) {
+# 		brandId
+# 		name
+# 	}
+# }
+
+query getBrands {
+	queryBrand {
+		brandId
+		name
+	}
+}
+
+mutation createBrand($brand: AddBrandInput!) {
+	addBrand(input: [$brand]) {
+		brand {
+			brandId
+			name
+			website
+		}
+	}
+}
