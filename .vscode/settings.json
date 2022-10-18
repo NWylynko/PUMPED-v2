@@ -1,0 +1,26 @@
+{
+  "files.exclude": {
+    ".dockerignore": true,
+    ".env": true,
+    ".env.*": true,
+    ".eslintrc.json": true,
+    ".gitignore": true,
+    ".next": true,
+    ".nvmrc": true,
+    ".vscode": true,
+    "bun.lockb": true,
+    "dgraph": true,
+    "docker-compose.yml": true,
+    "Dockerfile": true,
+    "env.js": true,
+    "generated": true,
+    "Insomnia.json": true,
+    "next-env.d.ts": true,
+    "next.config.js": true,
+    "node_modules": true,
+    "schema.js": true,
+    "service-account.json": true,
+    "tsconfig.json": true,
+    "tsconfig.tsbuildinfo": true
+  }
+}
