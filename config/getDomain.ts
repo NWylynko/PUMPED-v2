@@ -1,14 +1,7 @@
-import { inProduction } from "./inProduction";
+import { z } from "zod";
 
+const schema = z.string().url();
 
 export const getDomain = (): string => {
-  const domain = inProduction
-    ? process.env.DOMAIN
-    : 'http://localhost:3000';
-
-  if (!domain) {
-    throw new Error(`env DOMAIN is undefined`);
-  }
-
-  return domain;
+  return schema.parse(process.env.DOMAIN);
 };

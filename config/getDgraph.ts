@@ -1,14 +1,7 @@
-import { inProduction } from "./inProduction";
+import { z } from "zod";
 
+const schema = z.string().url();
 
 export const getDgraph = (): string => {
-  const dgraph = inProduction
-    ? process.env.DGRAPH_API
-    : `http://localhost:8080`;
-
-  if (!dgraph) {
-    throw new Error(`env DGRAPH_API is undefined`);
-  }
-
-  return dgraph;
+  return schema.parse(process.env.DGRAPH_API);
 };

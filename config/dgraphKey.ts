@@ -3,14 +3,15 @@ import { SecretManagerServiceClient } from '@google-cloud/secret-manager';
 
 let dgraphKey: string | undefined = undefined;
 
-export const getDgraphKey = (): string | undefined => {
-  if (!inProduction)
-    return undefined;
+export const getDgraphKey = (): string => {
+  if (!inProduction) {
+    throw new Error(`not running production, api key not needed`);
+  }
 
   if (dgraphKey)
     return dgraphKey;
 
-  throw new Error(`the dgraph api key has not loaded yet fuck`);
+  throw new Error(`the dgraph api key has not loaded yet`);
 };
 
 const fetchDgraphKey = async () => {
