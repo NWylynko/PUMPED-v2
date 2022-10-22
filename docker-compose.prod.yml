@@ -31,14 +31,3 @@ services:
       - "9080:9080"
     restart: on-failure
     command: dgraph alpha --my=alpha1:7080 --zero=zero:5080 --security "whitelist=0.0.0.0/0"
-
-  alpha2:
-    image: dgraph/dgraph:latest
-    volumes:
-      - ./dgraph/alpha2:/dgraph
-    ports:
-      - "7081:7081"
-      - "8081:8081"
-      - "9081:9081"
-    restart: on-failure
-    command: dgraph alpha --my=alpha2:7081 --zero=zero:5080 -o=1 --security "whitelist=0.0.0.0/0"
