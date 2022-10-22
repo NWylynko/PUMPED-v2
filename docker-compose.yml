@@ -13,8 +13,8 @@ services:
 
   zero:
     image: dgraph/dgraph:latest
-    volumes:
-      - ./dgraph/zero:/dgraph
+    # volumes:
+    #   - ./dgraph/zero:/dgraph
     ports:
       - "5080:5080"
       - "6080:6080"
@@ -23,8 +23,8 @@ services:
 
   alpha1:
     image: dgraph/dgraph:latest
-    volumes:
-      - ./dgraph/alpha1:/dgraph
+    # volumes:
+    #   - ./dgraph/alpha1:/dgraph
     ports:
       - "7080:7080"
       - "8080:8080"
@@ -34,8 +34,8 @@ services:
 
   alpha2:
     image: dgraph/dgraph:latest
-    volumes:
-      - ./dgraph/alpha2:/dgraph
+    # volumes:
+    #   - ./dgraph/alpha2:/dgraph
     ports:
       - "7081:7081"
       - "8081:8081"

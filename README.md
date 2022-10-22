@@ -1,16 +1,21 @@
-This uses Next.js, read here [Next.js Documentation](https://nextjs.org/docs) -
-learn about Next.js
+This uses Next.js, read here [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js
 
 ## First Setup
 
-1. `yarn install` to install dependencies
-2. `docker-compose up` to bring up the database (append `-d` to run in the background)
+1. `bun install` to install dependencies (we use https://bun.sh for dependency installs)
+2. `bun run database:start` to bring up the database (runs in docker)
 3. `cp .env.local.example .env.local` and set local env variables
-4. `yarn schema:push` to push the schema to the database
-5. `yarn generate-types:watch` to generate the types and functions
-6. download service account from firebase console and save as
+4. `bun run schema:validate` to check the schema is valid
+5. `bun run schema:push` to push the schema to the database
+6. `bun run generate-types` to generate the graphql types
+7. download service account from firebase console and save as
    `service-account.json`
-7. `yarn dev` to bring up next.js
+8. `bun run dev` to bring up next.js
 
-You will have 3 terminal windows open, 4 if you want to run `yarn typecheck:watch` to
-watch for type errors
+Next.js will only check types of the code your currently running, you can run `bun run typecheck:watch` to typecheck the entire codebase
+
+commands:
+ - use `bun run database:start` and `bun run database:stop` to start and stop the database
+ - run `bun run schema:validate` and `bun run schema:push` to update the schema (found at ./schema.graphql)
+ - run `bun run generate-types` if the schema has changed to pull the correct types in to the project
+ - use `bun run dev` to start the next.js development server and open http://localhost:3000 to view
