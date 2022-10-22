@@ -5,21 +5,35 @@ WORKDIR /app
 COPY package.json bun.lockb ./
 RUN bun install
 
-# this has to run here as it uses the bun runtime
-RUN bun run database:start && sleep 20 && bun run schema:validate && bun run schema:push && bun run generate-types && bun run database:stop
+FROM nwylynko/bun:0.2.0-alpine as schema
+
+WORKDIR /app
+COPY schema.graphql ./
+
+RUN bun install zod
+
+RUN bun run ./scripts/schema.ts validate http://10.128.0.5:8080 ./schema.graphql
+RUN bun run ./scripts/schema.ts push http://10.128.0.5:8080 ./schema.graphql
+
+FROM node:18.11.0-alpine as gen
+
+WORKDIR /app
+
+RUN yarn add @genql/cli
+
+RUN yarn genql --endpoint http://10.128.0.5:8080/graphql --output ./generated
 
 # Rebuild the source code only when needed
 FROM node:18.11.0-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
-COPY --from=deps /app/generated ./generated
+COPY --from=gen /app/generated ./generated
 COPY . .
 
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED 1
-
 
 RUN yarn build
 
