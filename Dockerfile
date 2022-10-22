@@ -5,10 +5,14 @@ WORKDIR /app
 COPY package.json bun.lockb ./
 RUN bun install
 
+# this has to run here as it uses the bun runtime
+RUN bun run database:start && sleep 20 && bun run schema:validate && bun run schema:push && bun run generate-types && bun run database:stop
+
 # Rebuild the source code only when needed
 FROM node:18.11.0-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/generated ./generated
 COPY . .
 
 # Next.js collects completely anonymous telemetry data about general usage.
@@ -16,7 +20,6 @@ COPY . .
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED 1
 
-RUN yarn generate-types
 
 RUN yarn build
 
