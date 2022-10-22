@@ -1,7 +1,14 @@
 import { z } from "zod";
 
 const validate = async (host: string, schema: string) => {
-  return post(`${host}/admin/schema/validate`, schema)
+  const response = await post(`${host}/admin/schema/validate`, schema)
+
+  if (response.errors[0].message !== "Schema is valid") {
+    log(response)
+    throw new Error(response.errors[0].message)
+  }
+
+  return response
 }
 
 const push = async (host: string, schema: string) => {
@@ -23,38 +30,33 @@ const post = async (url: string, schema: string) => {
   })
 
   const result = await response.blob()
-
   const data = await result.json()
 
   return data
 }
 
-const actions = {
-  validate,
-  push
-}
+const actions = new Map([
+  ["validate", validate],
+  ["push", push]
+])
 
-const argsSchema = z.object({
-  action: z.union([z.literal("validate"), z.literal("push")]),
-  host: z.string().url(),
-  schemaPath: z.string()
-})
-
-const args = await (async () => {
+const getArgs = async () => {
+  const argsSchema = z.object({
+    action: z.union([z.literal("validate"), z.literal("push")]),
+    host: z.string().url(),
+    schemaPath: z.string()
+  })
+  
   const [, , action, host, schemaPath] = process.argv
   return argsSchema.parseAsync({ action, host, schemaPath })
-})()
-
-const fn = actions[args.action]
-
-if (!fn) {
-  console.error(`this action ${args.action} is not supported`)
-  console.error(`pick one from ${Object.keys(actions).join(", ")}`)
-  process.exit();
 }
 
+const log = (message: object) => {
+  console.log(JSON.stringify(message, null, 2))
+}
+
+const args = await getArgs()
+const fn = actions.get(args.action)
 const schema = await readSchema(args.schemaPath)
-
 const result = await fn(args.host, schema)
-
-console.log(JSON.stringify(result, null, 2))
+log(result);
