@@ -9,11 +9,12 @@ FROM nwylynko/bun:0.2.0-alpine as schema
 
 WORKDIR /app
 COPY schema.graphql ./
+COPY ./scripts ./scripts
 
 RUN bun install zod
 
-RUN bun run ./scripts/schema.ts validate http://10.128.0.5:8080 ./schema.graphql
-RUN bun run ./scripts/schema.ts push http://10.128.0.5:8080 ./schema.graphql
+RUN bun run ./scripts/schema.ts validate http://35.232.159.102:8080 ./schema.graphql
+RUN bun run ./scripts/schema.ts push http://35.232.159.102:8080 ./schema.graphql
 
 FROM node:18.11.0-alpine as gen
 
@@ -21,7 +22,7 @@ WORKDIR /app
 
 RUN yarn add @genql/cli
 
-RUN yarn genql --endpoint http://10.128.0.5:8080/graphql --output ./generated
+RUN yarn genql --endpoint http://35.232.159.102:8080/graphql --output ./generated
 
 # Rebuild the source code only when needed
 FROM node:18.11.0-alpine AS builder
