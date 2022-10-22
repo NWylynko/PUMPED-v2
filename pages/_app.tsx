@@ -39,6 +39,7 @@ const GlobalStyle = createGlobalStyle`
 
     background-color: #f04141;
     color: white;
+    font-size: 16px;
 
     border: none;
 

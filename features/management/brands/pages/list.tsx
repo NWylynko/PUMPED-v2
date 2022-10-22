@@ -1,10 +1,10 @@
+import type { Page } from "@/lib/Page";
 import { trpc } from "@/lib/trpc";
-import { NextPage } from "next";
 import Link from "next/link";
 import { Fragment } from "react";
 import styled from "styled-components";
 
-export const BrandsList: NextPage = () => {
+export const BrandsList: Page = () => {
   const { data: brands } = trpc.brands.getBrands.useQuery();
 
   return (
@@ -29,6 +29,9 @@ export const BrandsList: NextPage = () => {
     </Main>
   );
 };
+
+BrandsList.smallNavBar = true;
+BrandsList.hideNavItems = true;
 
 const Main = styled.main`
   display: flex;
