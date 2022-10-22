@@ -1,5 +1,6 @@
 import { graphql } from "@/graphql";
 import { t } from "@/server/trpc";
+import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
 const requestSchema = z.object({
@@ -17,14 +18,10 @@ const requestSchema = z.object({
   tagIds: z.array(z.string()),
 });
 
-const responseSchema = z.array(z.object({
-  shoeId: z.string()
-}));
-
 export const addNewShoe = t.procedure
   .input(requestSchema)
   .mutation(async ({ input }) => {
-    const response = await graphql.mutation({
+    const result = await graphql.mutation({
       addShoe: [
         {
           input: [
@@ -66,7 +63,14 @@ export const addNewShoe = t.procedure
       ],
     });
 
-    const result = await responseSchema.parseAsync(response.addShoe?.shoe)
+    if (!result.addShoe?.shoe) {
+      throw new TRPCError({
+        message: `database responded without shoe`,
+        code: "INTERNAL_SERVER_ERROR"
+      })
+    }
 
-    return result[0];
+    const shoe = result.addShoe.shoe[0]
+
+    return shoe;
 });

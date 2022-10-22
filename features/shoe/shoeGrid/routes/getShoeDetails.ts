@@ -10,7 +10,7 @@ export const getShoeDetails = t.procedure
     })
   )
   .query(async ({ input }) => {
-    const { queryShoe: shoes } = await graphql.query({
+    const result = await graphql.query({
       queryShoe: [
         {
           filter: {
@@ -45,14 +45,21 @@ export const getShoeDetails = t.procedure
       ]
     });
 
-    if (!shoes) {
+    if (!result.queryShoe) {
       throw new TRPCError({
         message: `404 shoe not found`,
         code: "NOT_FOUND"
       });
     }
 
-    const shoe = shoes[0];
+    const shoe = result.queryShoe[0];
+
+    if (!shoe) {
+      throw new TRPCError({
+        message: `404 shoe not found`,
+        code: "NOT_FOUND"
+      });
+    }
 
     return shoe;
   });

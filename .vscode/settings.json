@@ -11,6 +11,7 @@
     "bun.lockb": true,
     "dgraph": true,
     "docker-compose.yml": true,
+    "docker.sh": true,
     "Dockerfile": true,
     "env.js": true,
     "generated": true,

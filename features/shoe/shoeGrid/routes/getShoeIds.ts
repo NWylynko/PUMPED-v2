@@ -17,5 +17,5 @@ export const getShoeIds = t.procedure.query(async () => {
   });
 
   return result.queryShoe;
-  
+
 });
