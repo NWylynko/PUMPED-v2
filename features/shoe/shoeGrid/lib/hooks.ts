@@ -1,6 +1,6 @@
-import { trpc } from "@/lib/trpc"
+import { trpc } from "../trpc"
 
-export const useShoeIds = trpc.shoeGrid.getShoeIds.useQuery
-export const useShoeDetails = trpc.shoeGrid.getShoeDetails.useQuery
-export const useShoeColourIds = trpc.shoeGrid.getShoeColourIds.useQuery
-export const useShoeColour = trpc.shoeGrid.getShoeColour.useQuery
+export const useShoeIds = trpc.getShoeIds.useQuery
+export const useShoeDetails = trpc.getShoeDetails.useQuery
+export const useShoeColourIds = trpc.getShoeColourIds.useQuery
+export const useShoeColour = trpc.getShoeColour.useQuery

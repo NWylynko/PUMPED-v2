@@ -1,0 +1,9 @@
+{
+    "excluded": [
+      "node_modules",
+      ".fleet",
+      ".next",
+      ".vscode",
+      "generated"
+    ]
+}

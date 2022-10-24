@@ -1,25 +1,42 @@
-import { useForm, FormProvider, useFormContext, FieldValues } from "react-hook-form";
+import { DeepPartial, FieldValues, FormProvider, useForm } from "react-hook-form";
 import styled from "styled-components";
+import { MetaFormProvider, useMetaForm } from "./FormContext";
 
 interface FormProps <T> {
   children: JSX.Element[]
   onSubmit: (formData: T) => Promise<void>;
+  defaultValues?: DeepPartial<T>
 }
 
-export const Form = <T extends FieldValues, > ({ children, onSubmit }: FormProps<T>): JSX.Element => {
+const FormComponent = <T extends FieldValues, > ({ children, onSubmit, defaultValues }: FormProps<T>): JSX.Element => {
 
-  const methods = useForm<T>();
+  const [, setSubmitting] = useMetaForm(store => store.submitting);
 
-  const handleSubmit = methods.handleSubmit(onSubmit)
+  const methods = useForm<T>({ defaultValues });
+
+  const handleSubmit = methods.handleSubmit(async (form) => {
+    setSubmitting({ submitting: true });
+    await onSubmit(form);
+    // setSubmitting({ submitting: false });
+  })
 
   return (
-    <>
+    <MetaFormProvider>
       <FormProvider {...methods}>
         <StyledForm onSubmit={handleSubmit}>
           {children}
         </StyledForm>
       </FormProvider>
-    </>
+    </MetaFormProvider>
+  )
+}
+
+// wrapper to add in our provider
+export const Form = <T extends FieldValues, > (props: FormProps<T>): JSX.Element => {
+  return (
+    <MetaFormProvider>
+      <FormComponent {...props} />
+    </MetaFormProvider>
   )
 }
 

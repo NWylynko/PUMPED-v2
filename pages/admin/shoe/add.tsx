@@ -1,1 +1,1 @@
-export { AddShoePage as default } from "@/features/shoe/addShoe/pages/AddShoePage";
+export { AddShoePage as default } from "@/features/management/shoes/pages/Add";

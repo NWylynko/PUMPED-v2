@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+          "type": "command",
+          "name": "Next Dev",
+          "program": "bun",
+          "args": ["run", "dev"]
+        },
+    ]
+}

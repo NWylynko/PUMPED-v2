@@ -1,18 +1,18 @@
 import { Form } from "@/components/Form/Form";
 import { SubmitButton } from "@/components/Form/SubmitButton";
 import { TextInput } from "@/components/Form/TextInput";
-import { AppRouter, trpc } from "@/lib/trpc";
+import { Router, trpc } from "../trpc";
 import { inferProcedureInput } from "@trpc/server";
 import styled from "styled-components";
 import type { Page } from "@/lib/Page";
 import { Title } from "@/components/Title";
 import { useRouter } from "next/router";
 
-type NewBrand = inferProcedureInput<AppRouter["brands"]["createBrand"]>[number]
+type NewBrand = inferProcedureInput<Router["createBrand"]>[number]
 
 export const AddBrand: Page = () => {
 
-  const { mutateAsync: createBrand } = trpc.brands.createBrand.useMutation()
+  const { mutateAsync: createBrand } = trpc.createBrand.useMutation()
   const router = useRouter()
 
   const handleSubmit = async (newBrand: NewBrand) => {
@@ -30,12 +30,12 @@ export const AddBrand: Page = () => {
   return (
     <>
       <Container>
-      <Title>Add a Brand</Title>
-      <Form<NewBrand> onSubmit={handleSubmit}>
-        <TextInput<NewBrand> name="name" label="Brand Name" example="Nike" />
-        <TextInput<NewBrand> name="website" label="Brand Website" example="https://nike.com" />
-        <SubmitButton text="Continue" />
-      </Form>
+        <Title>Add a Brand</Title>
+        <Form<NewBrand> onSubmit={handleSubmit}>
+          <TextInput<NewBrand> name="name" label="Brand Name" example="Nike" />
+          <TextInput<NewBrand> name="website" label="Brand Website" example="https://nike.com" />
+          <SubmitButton text="Continue" />
+        </Form>
       </Container>
     </>
   )

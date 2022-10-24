@@ -1,13 +1,15 @@
 import { t } from './trpc';
 
 import { router as shoeGridRouter } from "@/features/shoe/shoeGrid/routes/router"
-import { router as addShoeRouter } from "@/features/shoe/addShoe/routes/router"
-import { router as brandRouter } from "@/features/management/brands/routes/router"
+import { router as shoeManagementRouter } from "@/features/management/shoes/routes/router"
+import { router as brandManagementRouter } from "@/features/management/brands/routes/router"
 
 export const appRouter = t.router({
-  brands: brandRouter,
   shoeGrid: shoeGridRouter,
-  addShoe: addShoeRouter,
+  management: t.router({
+    brands: brandManagementRouter,
+    shoes: shoeManagementRouter
+  })
 })
 
 // export type definition of API

@@ -1,4 +1,5 @@
-import styled from "styled-components"
+import styled from "styled-components";
+import { useMetaForm } from "./FormContext";
 
 interface SubmitButtonProps {
   text: string;
@@ -6,9 +7,11 @@ interface SubmitButtonProps {
 
 export const SubmitButton = ({ text }: SubmitButtonProps) => {
 
+  const [submitting] = useMetaForm(store => store.submitting);
+
   return (
     <Container>
-      <Button type="submit">{text}</Button>
+      <Button type="submit" disabled={submitting}>{text}</Button>
     </Container>
   )
 

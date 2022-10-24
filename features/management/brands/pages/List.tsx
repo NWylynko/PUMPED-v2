@@ -1,11 +1,11 @@
 import type { Page } from "@/lib/Page";
-import { trpc } from "@/lib/trpc";
+import { trpc } from "../trpc";
 import Link from "next/link";
 import { Fragment } from "react";
 import styled from "styled-components";
 
 export const BrandsList: Page = () => {
-  const { data: brands } = trpc.brands.getBrands.useQuery();
+  const { data: brands } = trpc.getBrands.useQuery();
 
   return (
     <Main>

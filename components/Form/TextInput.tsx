@@ -1,14 +1,17 @@
 import { useId } from "react";
 import { FieldValues, Path, useFormContext } from "react-hook-form";
 import styled from "styled-components";
+import { useMetaForm } from "./FormContext";
 
 interface TextInputProps <T> {
   name: Path<T>;
   label: string;
-  example: string;
+  example?: string;
 }
 
 export const TextInput = <T extends FieldValues,> ({ name, label, example }: TextInputProps<T>): JSX.Element => {
+
+  const [submitting] = useMetaForm(store => store.submitting);
 
   const id = useId();
 
@@ -17,12 +20,12 @@ export const TextInput = <T extends FieldValues,> ({ name, label, example }: Tex
   return (
     <Container>
       <Label htmlFor={id}>{label}</Label>
-      <Input id={id} {...methods.register(name)} placeholder={example} />
+      <Input id={id} {...methods.register(name)} placeholder={example} disabled={submitting} />
     </Container>
   )
 }
 
-const Container = styled.div`
+export const Container = styled.div`
   display: grid;
   grid-template-columns: 0.5fr 1fr;
   align-items: center;
@@ -37,8 +40,8 @@ const Container = styled.div`
   padding: 8px;
 `;
 
-const Label = styled.label`
+export const Label = styled.label`
 `;
 
-const Input = styled.input`
+export const Input = styled.input`
 `;

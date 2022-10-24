@@ -3,7 +3,7 @@ import { withTRPC } from "../lib/trpc";
 
 import Navbar from "../components/navbar";
 
-// import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 import { FirebaseProvider, useFirebase } from "@bluesky-digital-labs/next-firebase-auth";
 import { Login } from "../components/Login";
@@ -24,19 +24,20 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     color: rgb(241, 239, 239);
 
-    font-family: allumi-std,sans-serif;
+    font-family: "allumi-std",sans-serif;
     font-weight: 400;
     font-style: normal;
 
   }
 
-  button, input {
+  button, input, textarea {
     margin: 8px;
     padding: 12px;
 
     min-width: 150px;
     max-height: 75px;
 
+    font-family: "allumi-std",sans-serif;
     background-color: #f04141;
     color: white;
     font-size: 16px;
@@ -57,7 +58,12 @@ const GlobalStyle = createGlobalStyle`
 const MyApp: AppType = ({ Component, pageProps }) => {
   const { loading, user } = useFirebase();
 
-  if (!loading && !user) {
+  // this is optimistic, if its loading we just assume they are logged in
+  // if an ssr api call gets made then the backend still verifies they are
+  // logged in. So it is safe to assume they are and then lazy check.
+  const loggedIn = loading || !!user
+
+  if (!loggedIn) {
     return <Login />;
   }
 
@@ -70,7 +76,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
     <>
       <Navbar large={navBarLarge} hideNavItems={hideNavItems} />
       <Component {...pageProps} />
-      {/* <ReactQueryDevtools /> */}
+      <ReactQueryDevtools />
     </>
   );
 };

@@ -1,1 +1,1 @@
-export { ViewBrand as default } from "@/features/management/brands/pages/view";
+export { ViewBrand as default } from "@/features/management/brands/pages/View";

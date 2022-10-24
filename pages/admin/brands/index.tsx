@@ -1,1 +1,1 @@
-export { BrandsList as default } from "@/features/management/brands/pages/list";
+export { BrandsList as default } from "@/features/management/brands/pages/List";
