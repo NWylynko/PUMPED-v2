@@ -1,11 +1,11 @@
 # Install dependencies only when needed
-FROM nwylynko/bun:0.2.0-alpine AS deps
+FROM nwylynko/bun:0.2.1-alpine AS deps
 
 WORKDIR /app
 COPY package.json bun.lockb ./
 RUN bun install
 
-FROM nwylynko/bun:0.2.0-alpine as schema
+FROM nwylynko/bun:0.2.1-alpine as schema
 
 WORKDIR /app
 COPY schema.graphql ./
