@@ -6,7 +6,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate-types": "genql --endpoint http://localhost:8080/graphql --output ./generated",
+    "generate-graphql": "genql --endpoint http://localhost:8080/graphql --output ./generated",
     "schema:push": "bun run ./scripts/schema.ts push http://localhost:8080 ./schema.graphql",
     "schema:validate": "bun run ./scripts/schema.ts validate http://localhost:8080 ./schema.graphql",
     "typecheck": "tsc --noEmit",
