@@ -11,6 +11,7 @@ Pumped is an online store with the focus on shoes, built to be a simple and easy
 - [Zod](https://zod.dev)
 - [<img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white"/>](https://typescriptlang.org)
 - [Dgraph](https://dgraph.io)
+- [Cloud Run](https://cloud.run)
 
 ## Initial Setup
 
