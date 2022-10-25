@@ -5,7 +5,7 @@ type Brand {
   brandId: ID!
   name: String!
   website: String
-  icon: Image
+  icon: Image!
   shoes: [Shoe] @hasInverse(field: brand)
 }
 

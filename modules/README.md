@@ -1,0 +1,1 @@
+This is a place for developing modules. They need to be completely isolated, cannot import from anywhere else in the project. If they work well they should be packaged up separately and published to npm.

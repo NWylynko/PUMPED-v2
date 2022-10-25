@@ -2,6 +2,7 @@ import { AppType } from "next/dist/shared/lib/utils";
 import { withTRPC } from "../lib/trpc";
 
 import Navbar from "../components/navbar";
+import { Modal, ModalProvider } from "@/lib/modals";
 
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
@@ -46,6 +47,10 @@ const GlobalStyle = createGlobalStyle`
 
   }
 
+  button {
+    cursor: pointer;
+  }
+
   button:hover {
     background-color: #f36868;
   }
@@ -88,7 +93,10 @@ const App: AppType = (props) => {
       <NextSeo titleTemplate="%s - PUMPED 👟" />
       <ThemeProvider theme={{}}>
         <FirebaseProvider>
-          <MyApp {...props} />
+          <ModalProvider>
+            <MyApp {...props} />
+            <Modal />
+          </ModalProvider>
         </FirebaseProvider>
       </ThemeProvider>
     </>

@@ -1,6 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 import type { NextApiRequest, NextApiResponse } from 'next'
-import "../../../../lib/initializeFirebase";
+import "@/lib/initializeFirebase";
 import { getStorage } from 'firebase-admin/storage';
 import { z } from "zod"
 
@@ -40,7 +40,17 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     return;
   }
 
-  const [image] = await bucket.file(location).download()
+  const fileRef = bucket.file(location)
+
+  const [fileExists] = await fileRef.exists()
+
+  if (!fileExists) {
+    res
+      .status(404)
+      .send('404, image not found, big sad')
+  }
+
+  const [image] = await fileRef.download()
 
   imageCache.set(location, image);
 

@@ -1,0 +1,1 @@
+export { ImageUpload } from "@/features/imageUpload/components/ImageUpload"

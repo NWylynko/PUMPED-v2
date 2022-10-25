@@ -7,7 +7,7 @@ export const createBrand = t.procedure
     z.array(
       z.object({
         name: z.string(),
-        website: z.string().url(),
+        website: z.string().url().optional(),
       })
     )
   )

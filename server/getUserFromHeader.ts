@@ -1,6 +1,6 @@
 import { TRPCError } from '@trpc/server';
 import { NextApiRequest } from 'next/types';
-import "../lib/initializeFirebase";
+import "@/lib/initializeFirebase";
 import admin from 'firebase-admin';
 
 const auth = admin.auth();

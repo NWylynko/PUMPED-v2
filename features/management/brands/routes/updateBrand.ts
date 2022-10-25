@@ -8,7 +8,7 @@ export const updateBrand = t.procedure
       brandIds: z.array(z.string()),
       patch: z.object({
         name: z.string(),
-        website: z.string().url(),
+        website: z.string().url().optional(),
       }),
     })
   )
@@ -28,7 +28,9 @@ export const updateBrand = t.procedure
           },
         },
         {
-          brand: { brandId: true },
+          brand: { 
+            brandId: true,
+           },
         },
       ],
     });

@@ -1,1 +1,0 @@
-export { brandRouter } from "./router";

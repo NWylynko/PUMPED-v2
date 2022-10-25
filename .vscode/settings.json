@@ -4,6 +4,7 @@
     ".env": true,
     ".env.*": true,
     ".eslintrc.json": true,
+    ".fleet/": true,
     ".gitignore": true,
     ".next": true,
     ".nvmrc": true,
