@@ -16,7 +16,7 @@ export default function Navbar({ large = true, hideNavItems = false }: NavBarPro
         <div></div>
         <StyledLink href="/">
             <PUMPEDContainer>
-              <PUMPED src={bannerImg} height={large ? "300" : "100"} width={large ? "600" : "200"} />
+              <PUMPED src={bannerImg} height={large ? "300" : "100"} width={large ? "600" : "200"} alt="Pumped Banner Image" />
             </PUMPEDContainer>
         </StyledLink>
         {hideNavItems ? null : (
