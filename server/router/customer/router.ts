@@ -4,7 +4,8 @@ import { getMethods } from "./methods";
 
 export const customerRouter = t.router({
   get: t.procedure
-    .query(async ({ ctx: { user } }) => {
+    .query(async ({ ctx }) => {
+      const user = await ctx.getUser()
       const { getCustomer, createCustomer } = await getMethods()
       const response = await getCustomer({ customerId: user.uid })
 

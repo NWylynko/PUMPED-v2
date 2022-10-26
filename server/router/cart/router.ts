@@ -23,7 +23,8 @@ const getCart = async (customerId: string) => {
 
 export const cartRouter = t.router({
   get: t.procedure
-    .query(async ({ ctx: { user: { uid } } }) => {
+    .query(async ({ ctx }) => {
+      const { uid } = await ctx.getUser()
       return getCart(uid);
     }),
   add: t.procedure
@@ -32,7 +33,8 @@ export const cartRouter = t.router({
       stockId: z.string(),
       quantity: z.number()
     }))
-    .mutation(async ({ input, ctx: { user: { uid } } }) => {
+    .mutation(async ({ input, ctx }) => {
+      const { uid } = await ctx.getUser()
       const { AddShoeToCart } = await getMethods()
       const cart = await getCart(uid);
 
@@ -49,7 +51,8 @@ export const cartRouter = t.router({
     .input(z.object({
       address: z.string()
     }))
-    .mutation(async ({ input, ctx: { user: { uid } } }) => {
+    .mutation(async ({ input, ctx }) => {
+      const { uid } = await ctx.getUser()
       const { getOrderDetails, SetOrderShoePrice, processCart } = await getMethods()
       const { orderId } = await getCart(uid);
 
