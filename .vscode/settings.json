@@ -9,6 +9,7 @@
     ".next": true,
     ".nvmrc": true,
     ".vscode": true,
+    "**/tsconfig.json": true,
     "bun.lockb": true,
     "dgraph": true,
     "docker-compose.*.yml": true,

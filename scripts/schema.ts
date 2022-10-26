@@ -1,3 +1,7 @@
+// this runs using the bun runtime
+// this means we can use top level await
+// and other bun features
+
 import { z } from "zod";
 
 const validate = async (host: string, schema: string) => {
