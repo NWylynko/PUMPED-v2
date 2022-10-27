@@ -26,5 +26,5 @@ export const MultiSelect = <T extends FieldValues, >({ name, options, label }: M
 }
 
 const StyledSelect = styled(Select)`
-    font-family: "allumi-std",sans-serif;
+    font-family: "Kanit",sans-serif;
 `;

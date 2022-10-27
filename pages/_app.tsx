@@ -25,7 +25,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     color: rgb(241, 239, 239);
 
-    font-family: "allumi-std",sans-serif;
+    font-family: "Kanit",sans-serif;
     font-weight: 400;
     font-style: normal;
 
@@ -38,7 +38,7 @@ const GlobalStyle = createGlobalStyle`
     min-width: 150px;
     max-height: 75px;
 
-    font-family: "allumi-std",sans-serif;
+    font-family: "Kanit",sans-serif;
     background-color: #f04141;
     color: white;
     font-size: 16px;
