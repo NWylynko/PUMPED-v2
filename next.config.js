@@ -1,14 +1,17 @@
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
+  // output: 'standalone',
   reactStrictMode: true,
   swcMinify: true,
-  compiler: {
-    styledComponents: true,
-  },
+  // compiler: {
+  //   styledComponents: true,
+  // },
   experimental: {
-    newNextLinkBehavior: true
+    appDir: true
+  },
+  images: {
+    domains: ['lh3.googleusercontent.com'],
   }
 }
 

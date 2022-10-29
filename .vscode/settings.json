@@ -25,5 +25,7 @@
     "service-account.json": true,
     "tsconfig.json": true,
     "tsconfig.tsbuildinfo": true
-  }
+  },
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }

@@ -1,0 +1,19 @@
+
+.container {
+  display: grid;
+
+  grid-template-areas: 
+    "page-header page-header"
+    "list main";
+
+  grid-template-columns: 458px auto;
+
+  margin-left: 8px;
+  margin-right: 8px;
+
+  max-width: calc(100% - 16px);
+}
+
+.container > main {
+  grid-area: main;
+}

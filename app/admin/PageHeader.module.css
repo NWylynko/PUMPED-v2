@@ -1,0 +1,19 @@
+
+.container {
+
+  grid-area: page-header;
+
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  border-bottom: 2px solid var(--red);
+
+  height: 100px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+}

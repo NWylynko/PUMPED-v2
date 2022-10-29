@@ -1,0 +1,55 @@
+html, body {
+  min-height: 100vh;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background-color: #141111;
+
+  --red: #f04141;
+}
+
+p, b, h1, h2, h3, h4, h5, h6, a, li, button, label, select, option, span {
+  margin: 0;
+  color: rgb(241, 239, 239);
+
+  font-family: var(--kanit),sans-serif;
+  font-weight: 400;
+  font-style: normal;
+
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--fugaz), cursive;
+}
+
+button, input, textarea {
+  margin: 8px;
+  padding: 12px;
+
+  min-width: 150px;
+  max-height: 75px;
+
+  font-family: var(--kanit),sans-serif;
+  background-color: #f04141;
+  color: white;
+  font-size: 16px;
+
+  border: none;
+
+}
+
+button {
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #f36868;
+}
+
+a {
+  text-decoration: none;
+}
