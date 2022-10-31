@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { useSelectedLayoutSegments } from 'next/navigation';
+import styles from "./NavbarItem.module.css"
 
 interface ItemProps {
   name: string;
@@ -17,12 +18,7 @@ export const Item = ({ name, to }: ItemProps) => {
 
   return (
     <Link href={to}>
-      <div style={{
-        border: "2px solid var(--red)",
-        borderRadius: 8,
-        marginLeft: 18,
-        marginRight: 18,
-        padding: 12,
+      <div className={styles.container} style={{
         backgroundColor: active ? "var(--red)" : "transparent"
       }}>
         <span>{name}</span>

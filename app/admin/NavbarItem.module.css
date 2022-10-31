@@ -1,0 +1,8 @@
+
+.container {
+  border: 2px solid var(--red);
+  border-radius: 8px;
+  margin-left: 18px;
+  margin-right: 18px;
+  padding: 12px;
+}

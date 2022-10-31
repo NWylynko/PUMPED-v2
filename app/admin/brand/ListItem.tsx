@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useSelectedLayoutSegments } from 'next/navigation';
+import styles from "./ListItem.module.css";
 
 interface Brand {
   brandId: string;
@@ -17,25 +18,18 @@ export const ListItem = ({ brandId, name, website }: Brand) => {
 
   return (
     <Link href={`/admin/brand/${brandId}`}>
-      <div style={{
-        border: "2px dotted var(--red)",
-        borderStyle: active ? "solid" : "dotted",
-        padding: 12,
-        borderRadius: 8,
-        display: "flex",
-        alignItems: "center",
-        alignContent: "center",
-        gap: 8
-      }}>
+      <div
+        className={styles.container}
+        style={{
+          borderStyle: active ? "solid" : "dotted",
+          borderWidth: active ? 4 : 2
+        }}
+      >
         <span
-          style={{
-            fontSize: 24
-          }}
+          className={styles.title}
         >{name}</span>
         <span
-          style={{
-            color: "#7C7C7C"
-          }}
+          className={styles.subText}
         >{website}</span>
       </div>
     </Link>

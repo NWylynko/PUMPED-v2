@@ -2,6 +2,7 @@
 
 import { useFirebase } from "@bluesky-digital-labs/next-firebase-auth";
 import Image from "next/image";
+import styles from "./UserIcon.module.css"
 
 export const UserIcon = () => {
 
@@ -17,7 +18,7 @@ export const UserIcon = () => {
 
   return (
     <Image 
-      style={{ borderRadius: "50%", border: "3px solid var(--red)" }} 
+      className={styles.img} 
       src={user.photoURL} 
       alt="Your User Icon" 
       width={42} 

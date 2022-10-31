@@ -7,12 +7,14 @@ import { FirebaseProvider } from "@bluesky-digital-labs/next-firebase-auth";
 
 const kanit = Kanit({
   weight: "400",
-  variable: "--kanit"
+  variable: "--kanit",
+  subsets: ["latin"]
 })
 
 const fugazOne = Fugaz_One({
   weight: "400",
-  variable: "--fugaz"
+  variable: "--fugaz",
+  subsets: ["latin"]
 })
 
 export default function RootLayout({ children }: { children: JSX.Element }) {
